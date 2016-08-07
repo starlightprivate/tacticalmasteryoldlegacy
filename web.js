@@ -22,7 +22,7 @@ app.use(session({ resave: true,
     secret: 'uwotm8' }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(favicon('./img/icon/icon40px.png'));
+//app.use(favicon('./img/icon/icon40px.png'));
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(gzippo.staticGzip("" + __dirname + "/dist"));
 
