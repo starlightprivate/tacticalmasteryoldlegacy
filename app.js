@@ -1,6 +1,13 @@
 angular.module('tactical', ['ui.bootstrap','ui.router','ngAnimate']);
 
 angular.module('tactical').config(function($stateProvider, $urlRouterProvider) {
+    $stateProvider
+        .state('main', {
+            url: '/',
+            templateUrl: 'pages/main/main.html',
+            controller: 'MainCtrl',
+            controllerAs: 'main'
+        });
 
     /* Add New States Above */
     $urlRouterProvider.otherwise('/home');
