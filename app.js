@@ -10,7 +10,7 @@ angular.module('tactical').config(function($stateProvider, $urlRouterProvider) {
         });
 
     /* Add New States Above */
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/');
 
 });
 
