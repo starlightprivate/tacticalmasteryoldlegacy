@@ -1,6 +1,6 @@
 angular.module('tactical', ['ui.bootstrap','ui.router','ngAnimate']);
 
-angular.module('tactical').config(function($stateProvider, $urlRouterProvider) {
+angular.module('tactical').config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
         .state('main', {
             url: '/',
@@ -11,7 +11,7 @@ angular.module('tactical').config(function($stateProvider, $urlRouterProvider) {
 
     /* Add New States Above */
     $urlRouterProvider.otherwise('/');
-
+    //$locationProvider.html5Mode(true);
 });
 
 angular.module('tactical').run(function($rootScope) {
