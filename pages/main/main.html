@@ -1,32 +1,34 @@
-<div class="col-md-12 var3" ng-controller="MainCtrl">
-    <div class="overhide"> <!-- Start: Hide elements overlaping page -->
-        <header class="main-header">
-            <div class="container">
-                <img class="message" src="img/index_3/header1.png">
+<div class="main-container" ng-controller="MainCtrl">
 
-                <div class="logo">
-                    <img src="img/index_3/logo.png" alt="Tactical Mastery">
-                </div>
-
-                <img class="message" src="img/index_3/header2.png">
+    <div class="container">
+        <div class="header row">
+            <div class="col-md-4 hidden-sm hidden-xs">
+                <img class="message pull-left hidden-xs" src="img/index_3/header1.png">
             </div>
-        </header>
 
-        <div class="page-container container">
 
+            <div class="col-md-4 col-sm-12">
+                <img class="logo" src="img/index_3/logo.png" alt="Tactical Mastery">
+            </div>
+
+            <div class="col-md-4 hidden-sm hidden-xs">
+                <img class="message pull-right" src="img/index_3/header2.png">
+            </div>
+        </div>
+
+        <div class="body-content">
             <div class="features top">
-                <img src="img/index_3/all.png">
+                <img src="img/home/feature.png">
             </div>
 
-
-            <div class="panel-one">
-
+            <div class="home-content row">
                 <div class="video-container">
                     <script src="//fast.wistia.com/embed/medias/ya8uye69gd.jsonp" async></script><script src="//fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:55.42% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_ya8uye69gd seo=false videoFoam=true" style="height:100%;width:100%">&nbsp;</div></div></div>
                 </div>
 
                 <div class="cta-buttons">
-                    <a href="javascript:void(0);" class="cta green" onclick="popLeadForm()">
+
+                    <a href="javascript:void(0);" ng-click="main.showLeadForm()" class="cta green" onclick="popLeadForm()">
                             <span class="over">
                                 <span class="big">Yes! I want 75% Off!</span>
                                 <span class="small">Free Shipping Valid Till Today.</span>
@@ -41,15 +43,15 @@
                     </a>
                 </div>
 
-                <div class="text-center variation3">
-                    <img src="img/index_3/footerimage.jpg" class="img-responsive">
+                <div class="text-center flashlight-img">
+                    <img src="img/home/flashlight.png" class="img-responsive" >
                 </div>
             </div>
-
         </div>
 
-        <footer></footer>
 
     </div>
+
+    <footer></footer>
 
 </div>
