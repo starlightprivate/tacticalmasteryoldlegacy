@@ -10,7 +10,7 @@ var pkg = require('./package.json');
 //This enables users to create any directory structure they desire.
 var createFolderGlobs = function(fileTypePatterns) {
   fileTypePatterns = Array.isArray(fileTypePatterns) ? fileTypePatterns : [fileTypePatterns];
-  var ignore = ['node_modules','bower_components','dist','temp'];
+  var ignore = ['node_modules','bower_components','dist','temp', 'libs'];
   var fs = require('fs');
   return fs.readdirSync(process.cwd())
           .map(function(file){
@@ -60,7 +60,7 @@ module.exports = function (grunt) {
         options: {
             jshintrc: '.jshintrc'
         },
-        src: createFolderGlobs(['*.js', '!*web.js'])
+        src: createFolderGlobs(['*.js', '!*web.js',  '!*formValidation.js'])
       }
     },
     clean: {
