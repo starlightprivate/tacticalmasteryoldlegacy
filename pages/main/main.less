@@ -53,10 +53,14 @@ html, body {
             img {
                 width: 100%;
             }
+            @media (max-width: 640px) {
+                padding: 13px 5px;
+            }
+
         }
 
         .flashlight-img {
-            margin-top: 50px;
+            margin-top: 30px;
             margin-bottom: 10px;
         }
 
@@ -66,37 +70,32 @@ html, body {
             padding: 30px;
 
             .cta-buttons {
+                margin-top: 20px;
 
-                .cta {
-                    display: block;
-                    margin: 15px auto;
-                    color: #fff;
-                    text-align: center;
-                    text-decoration: none;
-
-                    @media (max-width: 479px) {
-                        font-size: 12px;
-                    }
-
+                .buy-button {
+                    width: 100%;
 
                     .over {
                         border-radius: 8px;
                         top: -4px;
+                        margin: 10px auto;
+                        color: #fff;
+                        text-align: center;
+                        text-decoration: none;
                         display: block;
 
                         transition: all ease-out 150ms;
+                        text-transform: uppercase;
+                        text-shadow: 1px 1px 2px rgba(0,0,0, 0.3);
 
                         > * {
                             display: block;
                             margin: 0;
                         }
 
-                        text-transform: uppercase;
-                        text-shadow: 1px 1px 2px rgba(0,0,0, 0.3);
-
                         .big {
                             font-weight: 600;
-                            font-size: em(30);
+                            font-size: 1.25em;
                             letter-spacing: 1px;
                             line-height: 1.25em;
 
@@ -108,69 +107,22 @@ html, body {
                         .small {
                             line-height: 1.25em;
                             @media (max-width: 480px) {
-                                font-size: em(12);
+                                font-size: 0.9em;
                             }
                         }
 
                         .regular {
-                            font-size: em(21);
+                            font-size: 1em;
                             font-weight: 600;
                             line-height: 1.25em;
 
                             @media (max-width: 480px) {
-                                font-size: em(13);
+                                font-size: 0.9em;
                                 font-weight: 300;
                             }
                         }
                     }
 
-                    &:before {
-                        content: "";
-                        display: block;
-                        width: 100%;
-                        height: 20px;
-                        position: absolute;
-                        bottom: 0;
-                        left: 0;
-                        border-radius: 8px;
-                    }
-
-
-                    &.green {
-                        .over {
-                            background-image: linear-gradient(#A5E837, #1E6F12);
-                            border: 1px solid #63AC3B;
-                            padding: 20px;
-
-                            @media (max-width: 480px) {
-                                padding: 12px;
-                            }
-                        }
-
-
-                    }
-
-                    &.red {
-                        .over {
-                            background-image: linear-gradient(#ED2329, #95090F);
-                            border: 1px solid #7F090D;
-                            padding: 12px;
-
-                            @media (max-width: 480px) {
-                                padding: 6px;
-                            }
-                        }
-
-
-                    }
-
-                    &:hover {
-                        text-decoration: none;
-
-                        .over {
-                            top: 0px;
-                        }
-                    }
                 }
 
             }
