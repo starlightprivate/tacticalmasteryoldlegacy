@@ -2,13 +2,36 @@ angular.module('tactical').controller('BuymodalCtrl', function ($scope , $uibMod
     
     console.log("BuymodalCtrl Running");
 
-    $scope.leadFormSubmit = function () {
+    $scope.formData = {
+        fullname: '',
+        email: '',
+        phoneNumber : ''
+    };
+    $scope.disableSubmitButton = true;
+
+    window.submitLeadForm = function (e) {
+        console.log(e);
+        if (checkvalidation()) {
+            // Do Proper Logic Stuffs
+        }
         console.log("ok");
+        return false;
+    };
+
+    
+    var checkvalidation = function () {
+        if ($scope.formData.fullname === '' || $scope.formData.email === '' || $scope.formData.phoneNumber === '') {
+            return false;
+        } else {
+            return true;
+        }
     };
 
     $timeout(function () {
 
-      // Define new validator
+        var isFormDirty = false;
+
+        // Define new validator
         window.FormValidation.Validator.intPhoneNumber = {
             html5Attributes: {
                 message: 'message',
@@ -60,40 +83,23 @@ angular.module('tactical').controller('BuymodalCtrl', function ($scope , $uibMod
             validating: 'fa fa-refresh'
             },
             fields: {
-            firstname: {
+            fullname: {
                 validators: {
                     notEmpty: {
-                        message: 'The First name is required'
+                        message: 'The Full name is required'
                     },
                     stringLength: {
                         min: 1,
                         max: 30,
-                        message: 'The First name must be more than 6 and less than 30 characters long. '
+                        message: 'The name must be more than 6 and less than 30 characters long. '
                     },
                     regexp: {
                         regexp: /^[a-zA-Z \.]+$/,
-                        message: 'The First name can only consist of alphabetical'
+                        message: 'The name can only consist of alphabetical'
                     }
                 }
             },
-
-            lastname: {
-                validators: {
-                    notEmpty: {
-                    message: 'The Last name is required'
-                    },
-                    stringLength: {
-                    min: 1,
-                    max: 30,
-                    message: 'The Last name must be more than 6 and less than 30 characters long. '
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z \.]+$/,
-                        message: 'The Last name can only consist of alphabetical'
-                    }
-                }
-            }, 
-            
+                        
             email: {                
                 validators: {
                     notEmpty: {
@@ -120,7 +126,19 @@ angular.module('tactical').controller('BuymodalCtrl', function ($scope , $uibMod
                 }
             }
           }
-        })        
+        })
+        // .on('success.field.fv', function(e, data) {            
+        //     var length = data.fv.getInvalidFields().length;
+        //     console.log('Firedddddddddddddddd', length);
+        //     if (!isFormDirty) {
+        //         data.fv.disableSubmitButtons(true);
+        //         isFormDirty = true;
+        //         return;
+        //     }
+        //     if (length > 0) {    // There is invalid field
+        //         data.fv.disableSubmitButtons(true);
+        //     }
+        // })
         .on('click', '.country-list', function() {
             $('#leadForm').formValidation('revalidateField', 'phoneNumber');
         });
