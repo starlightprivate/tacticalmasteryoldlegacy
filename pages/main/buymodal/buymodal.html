@@ -1,85 +1,42 @@
-<div ng-controller="BuymodalCtrl">
-    <form id="leadForm"  ng-submit="leadFormSubmit()">
-        <div class="modal-header">
-            <button type="button" class="close pull-right" ng-click="$dismiss()" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Modal title</h4>
-        </div>
-        <div class="modal-body">
+<div class="modal-header">
+    <button type="button" class="close pull-right" ng-click="$dismiss()" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">Give me a Title</h4>
+</div>
+<div class="modal-body">
 
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="firstname" id="firstname" placeholder="First Name">
-                    </div>
-                </div>
+    <form id="leadForm" class="form-horizontal">
 
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name">
-                    </div>
-                </div>
-
+        <div class="form-group">
+            <div class="col-xs-12">
+                <input data-fv-validatorname="true" type="text" class="form-control" name="firstname" id="firstname" placeholder="First Name" autocorrect="off">
             </div>
-            <div class="row">
-
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Email Address">
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <input type="number" class="form-control" name="phonenumber" id="phonenumber" placeholder="Phone Number">
-                    </div>
-                </div>
-
-            </div>
-
         </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Save changes</button>
+
+        <div class="form-group">
+            <div class="col-xs-12">
+                <input data-fv-validatorname="true" type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name" autocorrect="off">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-12">
+                <input data-fv-validatorname="true" type="email" class="form-control" name="email" placeholder="Email Address"  autocorrect="off">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-12">
+                <input data-fv-validatorname="true" type="tel" class="form-control" name="phoneNumber" placeholder="Phone Number" autocorrect="off" >
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-12">
+                <button type="submit"  data-ng-click="leadFormSubmit()" class="btn btn-primary">YES! Instantly Apply My 75% Off Discount</button>
+            </div>
         </div>
     </form>
+
 </div>
 
-<script>
-    /*$('#leadForm').formValidation({
-        framework: 'bootstrap',
-        icon: {
-            valid: 'fa fa-check',
-            invalid: 'fa fa-times',
-            validating: 'fa fa-refresh'
-        },
-        fields: {
-            firstname: {
-                validators: {
-                    notEmpty: {
-                        message: 'The First Name is required'
-                    }
-                }
-            },
-            lastname: {
-                validators: {
-                    notEmpty: {
-                        message: 'The Last Name is required'
-                    }
-                }
-            },
-            email: {
-                validators: {
-                    notEmpty: {
-                        message: 'The Email Address is required'
-                    }
-                }
-            },
-            phonenumber: {
-                validators: {
-                    notEmpty: {
-                        message: 'The Phone Number is required'
-                    }
-                }
-            }
-        }
-    });*/
-</script>
+
