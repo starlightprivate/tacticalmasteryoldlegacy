@@ -2,6 +2,7 @@
 'use strict';
 
 var pkg = require('./package.json');
+var mozjpeg = require('imagemin-mozjpeg');
 
 //Using exclusion patterns slows down Grunt significantly
 //instead of creating a set of patterns like '**/*.js' and '!**/node_modules/**'
@@ -93,7 +94,6 @@ module.exports = function (grunt) {
     copy: {
       main: {
         files: [
-          {src: ['img/**'], dest: 'dist/'},
           {src: ['bower_components/font-awesome/fonts/**'], dest: 'dist/',filter:'isFile',expand:true},
           {src: ['bower_components/bootstrap/fonts/**'], dest: 'dist/',filter:'isFile',expand:true}
           //{src: ['bower_components/angular-ui-utils/ui-utils-ieshiv.min.js'], dest: 'dist/'},
@@ -116,7 +116,7 @@ module.exports = function (grunt) {
         options: {
           remove: ['script[data-remove!="false"]','link[data-remove!="false"]'],
           append: [
-            {selector:'body',html:'<script src="app.full.min.js"></script>'},
+            {selector:'body',html:'<script defer src="app.full.min.js"></script>'},
             {selector:'head',html:'<link rel="stylesheet" href="app.full.min.css">'}
           ]
         },
@@ -164,20 +164,25 @@ module.exports = function (grunt) {
         }
       }
     },
-    //Imagemin has issues on Windows.
-    //To enable imagemin:
-    // - "npm install grunt-contrib-imagemin"
-    // - Comment in this section
-    // - Add the "imagemin" task after the "htmlmin" task in the build task alias
-    // imagemin: {
-    //   main:{
-    //     files: [{
-    //       expand: true, cwd:'dist/',
-    //       src:['**/{*.png,*.jpg}'],
-    //       dest: 'dist/'
-    //     }]
-    //   }
-    // },
+    imagemin: {                          // Task
+      static: {                          // Target
+          options: {                       // Target options
+              optimizationLevel: 3,
+              svgoPlugins: [{ removeViewBox: false }],
+              use: [mozjpeg()]
+          },
+          files: {                         // Dictionary of files
+          }
+      },
+      dynamic: {                         // Another target
+          files: [{
+              expand: true,                  // Enable dynamic expansion
+              cwd: './',                   // Src matches are relative to this path
+              src: ['img/**/*.{png,jpg,gif,svg}'],   // Actual patterns to match
+              dest: 'dist/'                  // Destination path prefix
+          }]
+      }
+    },
     karma: {
       options: {
         frameworks: ['jasmine'],
@@ -200,7 +205,9 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('build',['jshint','clean:before','less','dom_munger','ngtemplates','cssmin','concat','ngAnnotate','uglify','copy','htmlmin','clean:after']);
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
+  grunt.registerTask('default',['build']);
+  grunt.registerTask('build',['jshint','clean:before','less','dom_munger','ngtemplates','cssmin','concat','ngAnnotate','uglify','copy','imagemin','htmlmin','clean:after']);
   grunt.registerTask('serve', ['dom_munger:read','jshint','connect', 'watch']);
   grunt.registerTask('test',['dom_munger:read','karma:all_tests']);
 
