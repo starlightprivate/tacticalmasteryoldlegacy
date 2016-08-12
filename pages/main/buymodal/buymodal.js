@@ -1,5 +1,5 @@
 angular.module('tactical').controller('BuymodalCtrl', function ($scope , $uibModalInstance , $timeout) {
-    
+
     console.log("BuymodalCtrl Running");
 
     $scope.formData = {
@@ -18,7 +18,7 @@ angular.module('tactical').controller('BuymodalCtrl', function ($scope , $uibMod
         return false;
     };
 
-    
+
     var checkvalidation = function () {
         if ($scope.formData.fullname === '' || $scope.formData.email === '' || $scope.formData.phoneNumber === '') {
             return false;
@@ -73,10 +73,10 @@ angular.module('tactical').controller('BuymodalCtrl', function ($scope , $uibMod
                 return $field.val() === '' || $field.intlTelInput('isValidNumber');
             }
         };
-        
+
 
         $('#leadForm').formValidation({
-            framework: 'bootstrap',
+            framework: 'bootstrap4',
             icon: {
             valid: 'fa fa-check',
             invalid: 'fa fa-remove',
@@ -99,8 +99,8 @@ angular.module('tactical').controller('BuymodalCtrl', function ($scope , $uibMod
                     }
                 }
             },
-                        
-            email: {                
+
+            email: {
                 validators: {
                     notEmpty: {
                         message: 'The Email is required'
@@ -127,7 +127,7 @@ angular.module('tactical').controller('BuymodalCtrl', function ($scope , $uibMod
             }
           }
         })
-        // .on('success.field.fv', function(e, data) {            
+        // .on('success.field.fv', function(e, data) {
         //     var length = data.fv.getInvalidFields().length;
         //     console.log('Firedddddddddddddddd', length);
         //     if (!isFormDirty) {
