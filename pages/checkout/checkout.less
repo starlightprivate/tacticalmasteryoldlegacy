@@ -167,6 +167,14 @@ select {
     width: 100%;
 }
 
+.big-header .desktop {
+    display: block;
+}
+
+.big-header .mobile {
+    display: none;
+}
+
 .text-header {
     color: #424242;
     text-align: center;
@@ -276,11 +284,11 @@ label[for="creditcard"], label[for="expiration"] {
     font-family: EurostileLTStd-Demi;
     text-transform: uppercase;
     /*background: #246999;*/
-    background: -moz-linear-gradient(to top, #1e72b2, #16a0d5, #cdf9fb);
-    background: -webkit-linear-gradient(to top, #1e72b2, #16a0d5, #cdf9fb);
-    background: -o-linear-gradient(to top, #1e72b2, #16a0d5, #cdf9fb);
-    background: -ms-linear-gradient(to top, #1e72b2, #16a0d5, #cdf9fb);
-    background: linear-gradient(to top, #1e72b2, #16a0d5, #cdf9fb);
+    background: -moz-linear-gradient(to top, #02243d, #09445a, #0980b9);
+    background: -webkit-linear-gradient(to top, #02243d, #09445a, #0980b9);
+    background: -o-linear-gradient(to top, #02243d, #09445a, #0980b9);
+    background: -ms-linear-gradient(to top, #02243d, #09445a, #0980b9);
+    background: linear-gradient(to top, #02243d, #09445a, #0980b9);
     border-radius: 4px;
     overflow: hidden;
     color: #FFF;
@@ -835,6 +843,16 @@ input[type=number]::-webkit-outer-spin-button {
         font-size: 22px;
         line-height: 27px;
     }
+
+
+    .big-header .desktop {
+        display: none;
+    }
+
+    .big-header .mobile {
+        display: block;
+    }
+
 }
 
 @media (max-width: 480px) {
