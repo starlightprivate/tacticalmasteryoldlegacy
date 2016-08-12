@@ -43,47 +43,77 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
-                                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                <h4 class="modal-title" id="myModalLabel">Enter Your Details Below To INSTANTLY Receive 75% Off The Tactical Mastery Flashlight...</h4>
+                                <div class="row">
+                                    <div class="col-xs-12 pin-promo-wrapper">
+                                        <img class="pin-promo  pin-promo-2" src="img/flashlight.png" alt="Image"/>
+                                    </div>
+                                </div>
                             </div>
                             <div class="modal-body">
-                                <form id="leadForm" name="leadForm" onsubmit="return submitLeadForm();">
-                                   
+                                
+                                <!--<form id="leadForm" name="leadForm" novalidate action="#/checkout">-->
+                                <div>
+
                                    <div class="" style="padding-top: 30px;margin-bottom: 30px;">
-                                    <div class="form-group row">
-                                        <div class="col-xs-12">
-                                            <input data-fv-validatorname="true" type="text" data-ng-model="formData.fullname" required class="form-control" name="fullname" id="fullname" placeholder="Full Name" autocorrect="off">
+                                        
+                                        <div class="form-group row" data-ng-class="formValidationDivClass.fullname">
+                                            <div class="col-xs-12">
+                                                <input  type="text" 
+                                                data-ng-model="formData.fullname" 
+                                                data-ng-class="formValidationControlClass.fullname"  
+                                                required
+                                                data-ng-change="inputChanged('fullname')"
+                                                class="form-control" 
+                                                name="fullname" 
+                                                id="fullname" 
+                                                placeholder="Full Name" a
+                                                utocorrect="off" />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-xs-12">
-                                            <input data-fv-validatorname="true" type="email" data-ng-model="formData.email" required class="form-control" name="email" placeholder="Email Address"  autocorrect="off">
+                                        <div class="form-group row" data-ng-class="formValidationDivClass.email">
+                                            <div class="col-xs-12">
+                                                <input type="text" 
+                                                data-ng-model="formData.email" 
+                                                data-ng-class="formValidationControlClass.email" 
+                                                required
+                                                data-ng-change="inputChanged('email')"
+                                                class="form-control" 
+                                                name="email" 
+                                                placeholder="Email Address"  
+                                                autocorrect="off" />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-xs-12">
-                                            <input data-fv-validatorname="true" type="tel" data-ng-model="formData.phoneNumber" required class="form-control" name="phoneNumber" placeholder="Phone Number" autocorrect="off" >
+                                        <div class="form-group row" data-ng-class="formValidationDivClass.phoneNumber">
+                                            <div class="col-xs-12">
+                                                <input  type="tel" 
+                                                data-ng-model="formData.phoneNumber" 
+                                                data-ng-class="formValidationControlClass.phoneNumber" 
+                                                required
+                                                data-ng-change="inputChanged('phoneNumber')"
+                                                class="form-control" 
+                                                name="phoneNumber" 
+                                                placeholder="888-888-8888" 
+                                                autocorrect="off" />
+                                            </div>
                                         </div>
-                                    </div>
+
                                    </div>
 
 
                                     <div class="form-group row">
                                         <div class="col-xs-12">
-                                            <button type="submit" disabled="disabled" class="btn btn-primary btn-lg btn-block btn-discount">YES! Instantly Apply My 75% Off Discount</button>
+                                            <button type="submit" data-ng-click="submitLeadForm()" data-ng-disabled="disableSubmitButton"  class="btn btn-primary btn-lg btn-block btn-discount" style="background-color : #249007">YES! Instantly Apply My 75% Off Discount</button>
                                         </div>
                                     </div>
-                                </form>
+                                <!--</form>-->
+                                </div>
                               </div>
                                                           
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
+                    
 
                 </div>
 
