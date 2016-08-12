@@ -1,5 +1,5 @@
 //angular.module('tactical').controller('BuymodalCtrl', function ($scope, $uibModalInstance, $timeout) {
-angular.module('tactical').controller('BuymodalCtrl', function ($scope , $timeout) {
+angular.module('tactical').controller('BuymodalCtrl', ['$scope', '$state','$timeout', function ($scope , $state, $timeout ) {
 
     console.log("BuymodalCtrl Running");
 
@@ -113,19 +113,32 @@ angular.module('tactical').controller('BuymodalCtrl', function ($scope , $timeou
                 }
             },
 
+            // phoneNumber: {
+            //     validators: {
+            //         notEmpty: {
+            //             message: 'The phone number is required'
+            //         },
+            //         intPhoneNumber: {
+            //             utilsScript: '/libs/utils.js',
+            //             autoPlaceholder: true,
+            //             preferredCountries: 'fr,us,gb',
+            //             message: 'The phone number is not valid'
+            //         }
+            //     }
+            // }
+            // phone number field
             phoneNumber: {
+                validMessage: 'The phone number looks great',
                 validators: {
                     notEmpty: {
-                        message: 'The phone number is required'
+                        message: 'Please supply a phone number so we can call if there are any problems using this address.'
                     },
-                    intPhoneNumber: {
-                        utilsScript: '/libs/utils.js',
-                        autoPlaceholder: true,
-                        preferredCountries: 'fr,us,gb',
-                        message: 'The phone number is not valid'
+                    stringLength: {
+                        min: 10,
+                        message: 'Not a valid 10-digit US phone number (must not include spaces or special characters)'
                     }
                 }
-            }
+            },
           }
         })
         // .on('success.field.fv', function(e, data) {
@@ -143,7 +156,14 @@ angular.module('tactical').controller('BuymodalCtrl', function ($scope , $timeou
         .on('click', '.country-list', function() {
             $('#leadForm').formValidation('revalidateField', 'phoneNumber');
         });
+
+
+        
+        $('input[name=phoneNumber]').mask('000-000-0000', {'translation': {0: {pattern: /[0-9*-]/}}});
+       
+
+
     }, 0);
 
 
-});
+}]);
