@@ -7,6 +7,11 @@ angular.module('tactical').config(function($stateProvider, $urlRouterProvider, $
             templateUrl: 'pages/main/main.html',
             controller: 'MainCtrl',
             controllerAs: 'main'
+        }).state('checkout', {
+            url: '/checkout',
+            templateUrl: 'pages/checkout/checkout.html',
+            controller: 'CheckoutCtrl',
+            controllerAs: 'co'
         });
 
     /* Add New States Above */
