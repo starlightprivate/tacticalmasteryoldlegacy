@@ -1,4 +1,6 @@
-angular.module('tactical').controller('CheckoutCtrl',function($scope, $timeout){
+angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$stateParams','$timeout', function ($scope ,$state, $stateParams, $timeout ) {
+ 
+    console.log("CheckoutCtrl Running", $stateParams.modalData);
 
     $timeout(function () {
 
@@ -267,4 +269,4 @@ angular.module('tactical').controller('CheckoutCtrl',function($scope, $timeout){
                 $field.next('.validMessage[data-field="' + field + '"]').hide();
             });
     }, 0);
-});
+}]);

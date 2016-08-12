@@ -11,7 +11,8 @@ angular.module('tactical').config(function($stateProvider, $urlRouterProvider, $
             url: '/checkout',
             templateUrl: 'pages/checkout/checkout.html',
             controller: 'CheckoutCtrl',
-            controllerAs: 'co'
+            controllerAs: 'co',
+            params: { 'modalData': undefined }
         });
 
     /* Add New States Above */
