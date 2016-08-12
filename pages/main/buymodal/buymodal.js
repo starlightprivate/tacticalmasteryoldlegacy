@@ -1,4 +1,5 @@
-angular.module('tactical').controller('BuymodalCtrl', function ($scope , $uibModalInstance , $timeout) {
+//angular.module('tactical').controller('BuymodalCtrl', function ($scope, $uibModalInstance, $timeout) {
+angular.module('tactical').controller('BuymodalCtrl', function ($scope , $timeout) {
 
     console.log("BuymodalCtrl Running");
 
