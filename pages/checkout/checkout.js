@@ -1,8 +1,4 @@
-angular.module('tactical').controller('CheckoutCtrl',['$scope','$rootScope', '$state', '$stateParams', function ($scope,$rootScope, $state, $stateParams) {
-	console.log('CheckoutCtrl is running...');
-
+angular.module('tactical').controller('CheckoutCtrl',function ($scope) {
 	
 	
-  console.log($rootScope.modalData);
-	
-}]);
+});
