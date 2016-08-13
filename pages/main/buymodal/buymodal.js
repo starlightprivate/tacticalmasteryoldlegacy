@@ -120,7 +120,7 @@ angular.module('tactical').controller('BuymodalCtrl', ['$scope','$rootScope', '$
         if (checkvalidation2()) {
             // Do Proper Logic Stuffs
             $rootScope.modalData = $scope.formData;
-            $('#myModal').modal('hide');
+            $('#buyModal').modal('hide');
             setTimeout(function() {
                 $state.go('checkout', { modalData: $scope.formData });
             }, 411);
@@ -133,6 +133,10 @@ angular.module('tactical').controller('BuymodalCtrl', ['$scope','$rootScope', '$
         
     };
 
+    $('#buyModal').on('shown.bs.modal', function () {
+        $("#fullname").focus();
+    });
+    
     $timeout(function () {
         $('input[name=phoneNumber]').mask('000-000-0000', { 'translation': { 0: { pattern: /[0-9*-]/ } } });
     }, 0);
