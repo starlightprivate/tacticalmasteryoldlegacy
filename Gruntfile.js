@@ -95,6 +95,7 @@ module.exports = function (grunt) {
       main: {
         files: [
           {src: ['robots.txt'], dest: 'dist/',filter:'isFile',expand:true},
+          {src: ['fonts/**'], dest: 'dist/',filter:'isFile',expand:true},
           {src: ['bower_components/font-awesome/fonts/**'], dest: 'dist/',filter:'isFile',expand:true},
           { src: ['bower_components/bootstrap/fonts/**'], dest: 'dist/', filter: 'isFile', expand: true },
           { src: ['bower_components/bootstrap/dist/css/bootstrap.min.css'], dest: 'dist/', filter: 'isFile', expand: true }
@@ -119,8 +120,7 @@ module.exports = function (grunt) {
           remove: ['script[data-remove!="false"]','link[data-remove!="false"]'],
           append: [
             {selector:'body',html:'<script defer src="app.full.min.js"></script>'},
-            {selector:'head',html:'<link rel="stylesheet" href="app.full.min.css">'},
-            {selector:'head',html:'<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">'}
+            //{selector:'head',html:'<link rel="stylesheet" href="app.full.min.css" as="style" onload="this.rel=\'stylesheet\'"><noscript><link rel="stylesheet" href="app.full.min.css"></noscript>'}
           ]
         },
         src:'index.html',
