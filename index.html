@@ -4,12 +4,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <link rel="shortcut icon" href="img/favicon.png" type="image/vnd.microsoft.icon">
+  <link data-remove="false" rel="shortcut icon" href="img/favicon.png" type="image/vnd.microsoft.icon">
+
   <meta name="description" content="Tactical Mastery Flashlights">
   <meta name="abstract" content="Tactical Mastery Flashlights">
   <meta name="keywords" content="Tactical,Mastery">
-
-  <link rel="shortcut icon" href="img/favicon.png" type="image/vnd.microsoft.icon">
 
   <meta property="og:site_name" content="Tactical Mastery Flashlights">
   <meta property="og:type" content="website">
@@ -23,6 +22,18 @@
   <base href="/">
   <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link href="app.less" type="text/css" rel="stylesheet/less">
+
+    <script data-remove="false">
+        // https://github.com/filamentgroup/loadCSS
+        !function(e){"use strict"
+            var n=function(n,t,o){function i(e){return f.body?e():void setTimeout(function(){i(e)})}var d,r,a,l,f=e.document,s=f.createElement("link"),u=o||"all"
+                return t?d=t:(r=(f.body||f.getElementsByTagName("head")[0]).childNodes,d=r[r.length-1]),a=f.styleSheets,s.rel="stylesheet",s.href=n,s.media="only x",i(function(){d.parentNode.insertBefore(s,t?d:d.nextSibling)}),l=function(e){for(var n=s.href,t=a.length;t--;)if(a[t].href===n)return e()
+                    setTimeout(function(){l(e)})},s.addEventListener&&s.addEventListener("load",function(){this.media=u}),s.onloadcssdefined=l,l(function(){s.media!==u&&(s.media=u)}),s}
+            "undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this)
+    </script>
+    <script data-remove="false">
+        loadCSS("app.full.min.css");
+    </script>
 </head>
 <body>
 
