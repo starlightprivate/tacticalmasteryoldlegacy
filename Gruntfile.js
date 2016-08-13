@@ -95,6 +95,7 @@ module.exports = function (grunt) {
       main: {
         files: [
           {src: ['robots.txt'], dest: 'dist/',filter:'isFile',expand:true},
+          {src: ['fonts/**'], dest: 'dist/',filter:'isFile',expand:true},
           {src: ['bower_components/font-awesome/fonts/**'], dest: 'dist/',filter:'isFile',expand:true},
           { src: ['bower_components/bootstrap/fonts/**'], dest: 'dist/', filter: 'isFile', expand: true },
           { src: ['bower_components/bootstrap/dist/css/bootstrap.min.css'], dest: 'dist/', filter: 'isFile', expand: true }
