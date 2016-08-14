@@ -283,7 +283,7 @@ label[for="creditcard"], label[for="expiration"] {
     font-size: 14px;
     font-family: EurostileLTStd-Demi;
     text-transform: uppercase;
-    /*background: #246999;*/
+    background: #246999;
     background: -moz-linear-gradient(to top, #02243d, #09445a, #0980b9);
     background: -webkit-linear-gradient(to top, #02243d, #09445a, #0980b9);
     background: -o-linear-gradient(to top, #02243d, #09445a, #0980b9);
@@ -292,7 +292,7 @@ label[for="creditcard"], label[for="expiration"] {
     border-radius: 4px;
     overflow: hidden;
     color: #FFF;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     letter-spacing: .4px;
     width: 100%;
 }
@@ -302,6 +302,10 @@ label[for="creditcard"], label[for="expiration"] {
     padding: 7px;
     margin-right: 5px;
     display: inline-block;
+}
+
+.step-title-4 {
+    margin-top: 20px;
 }
 
 .arrow svg {
@@ -385,6 +389,7 @@ label[for="creditcard"], label[for="expiration"] {
     background: #fff;
     border-radius: 6px;
     /*box-shadow: 0 0 8px 0 #ccc;*/
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .05), 0 1px 4px 0 rgba(0, 0, 0, .08), 0 3px 1px -2px rgba(0, 0, 0, .2);
 }
 
 .sidebar input, .sidebar select, .sidebar textarea {
@@ -415,7 +420,7 @@ label[for="creditcard"], label[for="expiration"] {
 }
 
 #zipcode {
-    width: 110%;
+    width: 100%;
     height: 2.5rem;
 }
 
@@ -468,11 +473,18 @@ label[for="creditcard"], label[for="expiration"] {
 
 .payment .cc-sm svg {
     width: 50px;
-    height: 32px;
+    height: 33px;
+    border: 1px solid #ccc;
     margin-right: 0px;
     margin-bottom: 15px;
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.58);
     border-radius: 6px;
+}
+
+.payment .cc-sm svg.inactive {
+    opacity: 0.3;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
 }
 
 .payment a:not(:last-of-type) .cc-sm svg {
@@ -762,6 +774,21 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
+.state-col {
+    padding-left: 5px;
+}
+.zip-col {
+    padding-right: 5px;
+}
+
+.label-mobile {
+    display: none;
+}
+
+.label-desktop {
+    display: inline;
+}
+
 /*
 *
 *
@@ -769,7 +796,6 @@ input[type=number]::-webkit-outer-spin-button {
 *
 *
 */
-
 @media (min-width: 1366px) {
     html {
         background-color: #fff;
@@ -813,13 +839,52 @@ input[type=number]::-webkit-outer-spin-button {
     }
 }
 
+@media (min-width: 768px) {
+
+}
+
 @media (max-width: 767px) {
     .text-header .container {
         max-width: 100% !important;
     }
+
+    .label-desktop {
+        display: none;
+    }
+
+    .label-mobile {
+        display: inline;
+    }
+
+    .radio-box {
+        margin: 5px 0;
+    }
+
+    .radio-box label {
+        cursor: pointer;
+        margin: 0;
+        display: block;
+        font-weight: 600;
+        font-size: 14px;
+        min-height: 50px;
+        border-bottom: 1px solid #CCC;
+        padding: 10px 0 0;
+    }
+
+    .highlights.radio-box label {
+        font-weight: 800;
+    }
+
+    .radio-box:last-child label {
+        border-bottom: 0;
+    }
 }
 
 @media (max-width: 710px) {
+    #step-1 .step-content {
+        padding-left: 0;
+    }
+
     .text-header .container {
         max-width: 100% !important;
     }
@@ -835,12 +900,20 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 @media (max-width: 594px) {
+    header {
+        margin-bottom: 20px;
+    }
+
+    .text-header {
+        display: none;
+    }
+
     .text-header span {
-        font-size: 14px;
+        font-size: 1.2em;
     }
 
     .text-header .middle {
-        font-size: 22px;
+        font-size: 1.6em;
         line-height: 27px;
     }
 
@@ -859,11 +932,21 @@ input[type=number]::-webkit-outer-spin-button {
     .main {
         padding: 15px;
     }
+
+    .radio-box input[type="radio"] + label:before {
+        margin-right: 0;
+    }
 }
 
 @media (max-width: 380px) {
     .step-title {
         font-size: 12px;
+    }
+}
+
+@media (max-width: 367px) {
+    .payment a {
+        width: 23%;
     }
 }
 
@@ -887,6 +970,10 @@ input[type=number]::-webkit-outer-spin-button {
         white-space: pre-wrap;
     }
 
+    .payment a {
+        width: 23%;
+    }
+
     .payment a .cc-sm svg {
         width: 45px;
         height: 29px;
@@ -905,13 +992,24 @@ input[type=number]::-webkit-outer-spin-button {
         word-break: break-word;
     }
 
-    .text-header span {
-        font-size: 11px;
-    }
+    /*.text-header span {*/
+        /*font-size: 11px;*/
+    /*}*/
 
-    .text-header .middle {
-        font-size: 20px;
-        line-height: 24px;
+    /*.text-header .middle {*/
+        /*font-size: 20px;*/
+        /*line-height: 24px;*/
+    /*}*/
+}
+
+@media (max-width: 320px) {
+    .zip-col {
+        width: 100%;
+        padding-right: 15px;
+    }
+    .state-col {
+        width: 100%;
+        padding-left: 15px;
     }
 }
 
