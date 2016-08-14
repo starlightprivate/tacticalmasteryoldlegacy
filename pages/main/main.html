@@ -52,61 +52,51 @@
                             </div>
                             <div class="modal-body">
                                 
-                                <!--<form id="leadForm" name="leadForm" novalidate action="#/checkout">-->
-                                <div>
 
-                                   <div class="" style="padding-top: 30px;margin-bottom: 30px;">
-                                        
-                                        <div class="form-group row" data-ng-class="formValidationDivClass.fullname">
-                                            <div class="col-xs-12">
-                                                <input  type="text" 
-                                                data-ng-model="formData.fullname" 
-                                                data-ng-class="formValidationControlClass.fullname"
-                                                data-ng-change="inputChanged('fullname')"
-                                                class="form-control" 
-                                                name="fullname" 
-                                                id="fullname" 
-                                                placeholder="Full Name"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div class="form-group row" data-ng-class="formValidationDivClass.email">
-                                            <div class="col-xs-12">
-                                                <input type="text" 
-                                                data-ng-model="formData.email" 
-                                                data-ng-class="formValidationControlClass.email" 
-                                                required
-                                                data-ng-change="inputChanged('email')"
-                                                class="form-control" 
-                                                name="email" 
-                                                placeholder="Email Address"  
-                                                autocorrect="off" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group row" data-ng-class="formValidationDivClass.phoneNumber">
-                                            <div class="col-xs-12">
-                                                <input  type="tel" 
-                                                data-ng-model="formData.phoneNumber" 
-                                                data-ng-class="formValidationControlClass.phoneNumber" 
-                                                required
-                                                data-ng-change="inputChanged('phoneNumber')"
-                                                class="form-control" 
-                                                name="phoneNumber" 
-                                                placeholder="888-888-8888" 
-                                                autocorrect="off" />
-                                            </div>
-                                        </div>
+                                <form id="buyForm" class="form-horizontal">
 
-                                   </div>
+                                    <div class="form-group row">
+                                        <div class="col-xs-12">
+                                            <input  type="text" 
+                                            data-ng-model="formData.fullname"                                                 
+                                            class="form-control" 
+                                            name="fullname" 
+                                            id="fullname" 
+                                            placeholder="Full Name"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-xs-12">
+                                            <input type="text" 
+                                            data-ng-model="formData.email" 
+                                            class="form-control" 
+                                            name="email" 
+                                            placeholder="Email Address"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-xs-12">
+                                            <input  type="tel"
+                                            data-ng-model="formData.phoneNumber" 
+                                            class="form-control" 
+                                            name="phoneNumber"
+                                            placeholder="888-888-8888"
+                                            />
+                                        </div>
+                                    </div>
 
 
                                     <div class="form-group row">
                                         <div class="col-xs-12">
-                                            <button type="submit" data-ng-click="submitLeadForm()" data-ng-disabled="disableSubmitButton"  class="btn btn-primary btn-lg btn-block btn-modal-confirm">YES! Instantly Apply My 75% Off Discount</button>
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block btn-modal-confirm">YES! Instantly Apply My 75% Off Discount</button>
                                         </div>
                                     </div>
-                                <!--</form>-->
-                                </div>
+                                </form>
+
                               </div>
                                                           
                             </div>
