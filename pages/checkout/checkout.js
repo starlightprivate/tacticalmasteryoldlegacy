@@ -44,10 +44,10 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                                 max: 30,
                                 message: 'The name must be more than 6 and less than 30 characters long. '
                             },
-                            // regexp: {
-                            //     regexp: /^[a-zA-Z' \.]+$/,
-                            //     message: 'The name can only consist of alphabetical'
-                            // }
+                            regexp: {
+                                regexp: /^[a-zA-Z' \.]+$/,
+                                message: 'The name can only consist of alphabets'
+                            }
                         }
                     },
                     // Email field

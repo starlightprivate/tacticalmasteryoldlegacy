@@ -70,30 +70,38 @@ angular.module('tactical').controller('BuymodalCtrl', ['$scope','$rootScope', '$
             },
             fields: {
                 fullname: {
+
+                    validMessage: 'Nice to meet you!',
                     validators: {
                         notEmpty: {
-                            message: 'The Full name is required'
+                            message: 'The name is required'
                         },
                         stringLength: {
-                            min: 5,
-                            max: 35,
+                            min : 6,
+                            max: 30,
                             message: 'The name must be more than 6 and less than 30 characters long. '
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z \.]+$/,
-                            message: 'The name can only consist of alphabetical'
+                            regexp: /^[a-zA-Z' \.]+$/,
+                            message: 'The name can only consist of alphabets'
                         }
                     }
                 },
 
                 email: {
+                    validMessage: 'The email address looks great',
                     validators: {
                         notEmpty: {
-                            message: 'The Email is required'
+                            message: 'The email address is required'
+                        },
+                        stringLength: {
+                            min: 1,
+                            max: 30,
+                            message: 'The email address must be more than 6 and less than 30 characters long. '
                         },
                         regexp: {
-                            regexp: '^[^@\\s]+@([^@\\s]+\\.)+[^@\\s]+$',
-                            message: 'This is not a valid email address'
+                            regexp: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                            message: 'Please enter a valid email address'
                         }
                     }
                 },
