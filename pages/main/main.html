@@ -3,22 +3,22 @@
     <div class="container">
         <div class="header row">
             <div class="col-md-4 hidden-sm-down">
-                <img class="message pull-left hidden-xs" src="img/index_3/header1.png">
+                <img class="message pull-left hidden-xs img-fluid" src="img/index_3/header1.png">
             </div>
 
 
             <div class="col-md-4 col-sm-12">
-                <img class="logo" src="img/index_3/logo.png" alt="Tactical Mastery">
+                <img class="logo img-fluid" src="img/index_3/logo.png" alt="Tactical Mastery">
             </div>
 
             <div class="col-md-4 hidden-sm-down">
-                <img class="message pull-right" src="img/index_3/header2.png">
+                <img class="message pull-right img-fluid" src="img/index_3/header2.png">
             </div>
         </div>
 
         <div class="body-content">
             <div class="features top">
-                <img src="img/home/feature.png">
+                <img src="img/home/features-top.png">
             </div>
 
             <div class="home-content row">
@@ -27,9 +27,7 @@
                 </div>
 
                 <div class="cta-buttons">
-
-                    <!--<button class="btn btn-success buy-button"  ng-click="main.showLeadForm()">-->
-                    <button type="button" class="btn btn-success buy-button" data-toggle="modal" data-target="#buyModal">
+                    <button type="button" class="btn btn-success buy-button btn-green" data-toggle="modal" data-target="#buyModal">
                         <span class="over">
                             <span class="big">Yes! I want 75% Off!</span>
                             <span class="small">Free Shipping Valid Till Today.</span>
@@ -55,8 +53,9 @@
 
                                 <form id="buyForm" class="form-horizontal">
 
-                                    <div class="form-group row">
-                                        <div class="col-xs-12">
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label for="fullname">Name:</label>
                                             <input  type="text" 
                                             data-ng-model="formData.fullname"                                                 
                                             class="form-control" 
@@ -67,30 +66,33 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <div class="col-xs-12">
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="email">Email Address:</label>
                                             <input type="text" 
                                             data-ng-model="formData.email" 
                                             class="form-control" 
-                                            name="email" 
+                                            name="email"
+                                            id="email"
                                             placeholder="Email Address"
                                             />
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <div class="col-xs-12">
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="phoneNumber">Phone Number:</label>
                                             <input  type="tel"
                                             data-ng-model="formData.phoneNumber" 
                                             class="form-control" 
                                             name="phoneNumber"
+                                            id="phoneNumber"
                                             placeholder="888-888-8888"
                                             />
                                         </div>
                                     </div>
 
-
-                                    <div class="form-group row">
+                                    <div class="form-group submit-wrapper">
                                         <div class="col-xs-12">
                                             <button type="submit" class="btn btn-primary btn-lg btn-block btn-modal-confirm">YES! Instantly Apply My 75% Off Discount</button>
                                         </div>
