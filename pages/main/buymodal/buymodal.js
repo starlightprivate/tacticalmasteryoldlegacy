@@ -11,9 +11,22 @@ angular.module('tactical').controller('BuymodalCtrl', ['$scope','$rootScope', '$
     
     $timeout(function () {
 
-        $('#buyModal').on('shown.bs.modal', function () {
+        $('#buyModal').on('shown.bs.modal', reposition);
+
+        function reposition() {
             $("#fullname").focus();
+            var modal = $(this),
+                dialog = modal.find('.modal-dialog');
+
+            modal.css('display', 'block');
+            dialog.css("margin-top", Math.max(0, ($(window).height() - dialog.height()) / 2));
+        }
+
+        // Reposition when the window is resized
+        $(window).on('resize', function() {
+            $('.modal:visible').each(reposition);
         });
+
 
         var isFormDirty = false;
 
@@ -75,7 +88,7 @@ angular.module('tactical').controller('BuymodalCtrl', ['$scope','$rootScope', '$
                             message: 'The Full name is required'
                         },
                         stringLength: {
-                            min: 5,
+                            min: 1,
                             max: 35,
                             message: 'The name must be more than 6 and less than 30 characters long. '
                         },
@@ -92,7 +105,7 @@ angular.module('tactical').controller('BuymodalCtrl', ['$scope','$rootScope', '$
                             message: 'The Email is required'
                         },
                         regexp: {
-                            regexp: '^[^@\\s]+@([^@\\s]+\\.)+[^@\\s]+$',
+                            regexp: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
                             message: 'This is not a valid email address'
                         }
                     }
