@@ -61,6 +61,15 @@ select {
 /*}*/
 /*}*/
 
+form {
+    input[type=text],
+    input[type=number],
+    input[type=email],
+    input[type=tel] {
+        height: 2.375em;
+    }
+}
+
 .form-group {
     margin-bottom: 10px;
 }
@@ -292,7 +301,7 @@ label[for="creditcard"], label[for="expiration"] {
     border-radius: 4px;
     overflow: hidden;
     color: #FFF;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     letter-spacing: .4px;
     width: 100%;
 }
@@ -992,6 +1001,12 @@ input[type=number]::-webkit-outer-spin-button {
         padding-right: 0;
         word-break: break-all;
         white-space: pre-wrap;
+    }
+
+    .home-content {
+        .btn {
+            white-space: nowrap;
+        }
     }
 
     .payment a {

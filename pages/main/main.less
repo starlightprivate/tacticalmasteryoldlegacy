@@ -8,16 +8,23 @@ html, body {
     font-size: 16px;
 }
 
+.body {
+    >div {
+        overflow: hidden;
+    }
+}
+
 .main-container {
-    background: url(img/home/background.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    position:absolute;
+    background: url(img/home/background-home.jpg) no-repeat top center;
+    background-color: #020106;
+    background-size: 100% auto;
+    position:relative;
     width:100%;
     min-height: 100vh;
 
+    &.modal-open {
+        max-height: 100vh;
+    }
 
     .header {
         padding: 30px 0px 30px 0px;
@@ -25,18 +32,26 @@ html, body {
 
 
         img.message {
-            width: 220px;
-            padding: 20px 10px 0px 10px;
+            padding: 20px 0 0;
+
+            @media (max-width: 992px) {
+                max-width: 90%;
+            }
         }
 
         img.logo {
             position: absolute;
             margin: auto;
-            max-width: 80%;
             top: 0;
             left: 0;
             right: 0;
+            padding-left: 20px;
+            padding-right: 20px;
         }
+    }
+
+    .main-footer {
+        background: #000;
     }
 
     .body-content {
@@ -45,8 +60,9 @@ html, body {
         overflow: hidden;
         margin-bottom: 50px;
 
+
         .features {
-            background-image: linear-gradient(#eb0e0b, #a10202);
+            background-image: linear-gradient(#444, #0A0A0A);
             padding: 13px 22px;
 
             img {
@@ -68,6 +84,11 @@ html, body {
             margin: 0px auto;
             padding: 30px;
 
+            .btn {
+                white-space: pre-line;
+                word-break: break-word;
+            }
+
             @media (max-width: 640px) {
                 padding:10px;
             }
@@ -77,6 +98,40 @@ html, body {
 
                 .buy-button {
                     width: 100%;
+                    outline: none;
+
+                    &.btn-success {
+                        font-family: 'Open Sans', sans-serif;
+                        background: #144B09;
+                        &.btn-green {
+                            padding: 0;
+                            line-height: 0;
+                            border-radius: 8px;
+
+                            span.over {
+                                background-image: linear-gradient(#A5E837, #1E6F12);
+                                border: 1px solid #63AC3B;
+                                padding: 20px;
+                                border-radius: 8px;
+                                top: -4px;
+                                display: block;
+                                transition: all ease-out 150ms;
+                                text-transform: uppercase;
+                                text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+                                margin-top: 0 !important;
+                                margin-bottom: 5px !important;
+
+                            }
+                        }
+
+                        &:hover, &:focus {
+                            &.btn-green {
+                                span.over {
+                                    margin-bottom: 0 !important;
+                                }
+                            }
+                        }
+                    }
 
                     .over {
                         border-radius: 8px;
@@ -96,14 +151,30 @@ html, body {
                             margin: 0;
                         }
 
+                        @media (max-width: 480px) {
+                            padding-left: 5px;
+                            padding-right: 5px;
+                        }
+
+                        @media (max-width: 320px) {
+                            white-space: pre-wrap;
+                            word-wrap: normal;
+                            word-break: break-word;
+                        }
+
                         .big {
                             font-weight: 600;
-                            font-size: 1.25em;
+                            font-size: 1.9em;
                             letter-spacing: 1px;
                             line-height: 1.25em;
 
                             @media (max-width: 480px) {
+                                font-size: 1.4em;
                                 letter-spacing: .5px;
+                            }
+
+                            @media (max-width: 320px) {
+                                font-size: 1em;
                             }
                         }
 
@@ -111,6 +182,9 @@ html, body {
                             line-height: 1.25em;
                             @media (max-width: 480px) {
                                 font-size: 0.9em;
+                            }
+                            @media (max-width: 320px) {
+                                font-size: 0.7em;
                             }
                         }
 
