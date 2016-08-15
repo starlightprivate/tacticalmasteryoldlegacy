@@ -1,6 +1,24 @@
-angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$stateParams','$timeout', function ($scope ,$state, $stateParams, $timeout ) {
+angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$stateParams','$http', '$timeout','tacticalService', function ($scope ,$state, $stateParams,$http, $timeout , tacticalService) {
  
-    console.log("CheckoutCtrl Running", $stateParams.modalData);
+    console.log("CheckoutCtrl Running", $stateParams.modalData)
+    
+    $scope.checkoutData = {
+        firstName : "",
+        lastName : "NA",
+        emailAddress : "",
+        phoneNumber: "",
+        address1: "",
+        address2 : "",
+        city : "",
+        state : "",
+        postalCode : "",
+        cardNumber : "",
+        cardSecurityCode : "",
+        cardMonth : "",
+        cardYear : "",
+        product1_qty : "",
+        product1_id : ""
+    };
 
     $timeout(function () {
 
@@ -220,6 +238,34 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
             .on('err.form.fv', function (e, data) {
             })
             .on('success.form.fv', function (e, data) {
+
+                console.log("success.form.fv");
+                e.preventDefault();
+                
+                var data = {
+                    "firstName": "Shahjada",
+                    "lastName": "NA",
+                    "emailAddress": "asasas@gmail.com",
+                    "phoneNumber": "123-123-1234",
+                    "address1": "Just add 1",
+                    "address2": "Just add 2",
+                    "city": "NY",
+                    "state": "NY",
+                    "postalCode": "789",
+                    "cardNumber": "0000000000000000",
+                    "cardSecurityCode": "100",
+                    "cardMonth": "5",
+                    "cardYear": "2017",
+                    "product1_qty": "3",
+                    "product1_id": "7"
+                };
+
+                tacticalService.postToNewApiServer('create-order', data);
+
+                        
+
+                // $http
+                
             })
             .on('success.field.fv', function (e, data) {
                 var field = data.field,        // Get the field name
