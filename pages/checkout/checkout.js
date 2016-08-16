@@ -310,15 +310,22 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                                 message: 'Please set month more or equal current',
                                 callback: function(value, validator, $field) {
                                     var currentDate = new Date();
-                                    var year = parseInt(currentDate.getYear());
+                                    var year    = parseInt(currentDate.getYear());
+                                    var yearVal = parseInt($('#checkoutForm').find('[name=year]').val());
 
-                                    var selectedYear = 100 + parseInt($('#checkoutForm').find('[name=year]').val());
-
-                                    if (selectedYear === year) {
-                                        return (parseInt(value)-1 >= parseInt(currentDate.getMonth()));
+                                    if (yearVal === null || yearVal === undefined) {
+                                        return true;
                                     }
                                     else {
-                                        return true;
+                                        var selectedYear = 100 + parseInt($('#checkoutForm').find('[name=year]').val());
+
+                                        if (selectedYear === year) {
+                                            return (parseInt(value)-1 >= parseInt(currentDate.getMonth()));
+                                        }
+                                        else {
+                                            return true;
+                                        }
+                                        checkout_field_validation(['year']);
                                     }
                                 }
                             }
@@ -336,17 +343,9 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                                     var currentDate = new Date();
                                     var yearCondition = 100+parseInt(value) >= parseInt(currentDate.getYear());
 
-                                    if (100+parseInt(value) > parseInt(currentDate.getYear())) {
-                                        $('#checkoutForm').find('[name=month]').parents('.form-group').removeClass('has-warning').addClass('has-success');
-                                        $('#checkoutForm').find('[name=month]').next('.text-success').show();
-                                        $('#checkoutForm').find('[name=month]').nextAll('.form-control-feedback').hide();
-                                        $('#checkoutForm').find('[name=month]').nextAll('.fa ').removeClass('fa-remove').addClass('fa-check');
-                                    }
-                                    // else if(100+parseInt(value) < parseInt(currentDate.getYear())) {
-                                    //   $('#checkoutForm').find('[name=month]').parents('.form-group').removeClass('has-success').addClass('has-warning');
-                                    //   $('#checkoutForm').find('[name=month]').next('.text-success').hide();
-                                    //   $('#checkoutForm').find('[name=month]').nextAll('.form-control-feedback').hide();
-                                    //   $('#checkoutForm').find('[name=month]').nextAll('.fa ').removeClass('fa-remove').addClass('fa-check');
+                                    checkout_field_validation(['month']);
+
+                                    // if (100+parseInt(value) > parseInt(currentDate.getYear())) {
                                     // }
 
                                     return yearCondition;
@@ -389,6 +388,20 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
 
                 tacticalService.postToNewApiServer('create-order', $scope.checkoutData).then(function (resp) {
                     console.log("create-order success", resp);
+
+                    var orderData = {
+                        dateCreated: resp.data.dateCreated,
+                        f_address1: resp.data.address1,
+                        f_city: resp.data.city,
+                        f_name: resp.data.firstName,
+                        f_emailAddress: resp.data.emailAddress,
+                        f_phoneNumber: resp.data.phoneNumber,
+                        orderId: resp.data.orderId,
+                        f_postalCode: resp.data.postalCode,
+                        initialProductId: resp.data.items[0].productId
+                    };
+
+                    localStorage.setItem('orderData', JSON.stringify(orderData));
 
                     $state.go('batteryoffer', { });
                 },
