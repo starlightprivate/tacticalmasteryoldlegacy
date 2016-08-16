@@ -33,6 +33,80 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
 
     $timeout(function () {
 
+        $('input[type=number]').on('keydown', function (e) {
+            e = (e) ? e : window.event;
+            var charCode = (e.which) ? e.which : e.keyCode;
+            var availableChar = [8, 18, 33, 34, 35, 36, 37, 38, 39, 40, 46];
+            if (availableChar.indexOf(charCode) !== -1) {
+                return true;
+            }
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        });
+
+        $('input[type=tel]').on('keydown', function (e) {
+            e = (e) ? e : window.event;
+            var charCode = (e.which) ? e.which : e.keyCode;
+            if (charCode === 189)  {
+                return false;
+            }
+            return true;
+        });
+
+
+        // Credit Card Behavior >>>
+        $("input#creditcard").detectCard({supported:['american-express', 'visa', 'mastercard', 'discover']});
+
+        $("input#creditcard").on('keyup', function() {
+            if ($(this).val() === '' || $(this).val() === undefined) {
+                $(this).parents('.form-group').prev('.payment-icon').find('.cc-icon').removeClass('inactive active');
+            }
+        })
+            .on("cardChange", function(e, card) {
+            if (card.supported) {
+                $('.payment-icon .cc-icon.cc-'+ card.type).parents('a').siblings().find('.cc-icon').removeClass('active').addClass('inactive');
+                $('.payment-icon .cc-icon.cc-'+ card.type)
+                    .removeClass('inactive')
+                    .addClass('active');
+            }
+            else {
+                $('.payment-icon .cc-icon').removeClass('inactive active');
+            }
+        });
+        //  <<< Credit Card Behavior
+
+
+        $('input[name=zipcode]').on('keyup', function(){
+            if ($(this).val().length === 5) {
+                var path = 'https://newapi.tacticalmastery.com/api/v1.0/state/';
+                $.ajax({
+                    url: path + $(this).val() + '/?',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        if (response.success) {
+                            if (response.data) {
+                                $('input[name=state]').val(response.data.state);
+                                $('input[name=city]').val(response.data.primary_city);
+                            }
+                        }
+                        else {
+                            $('input[name=state]').val('');
+                            $('input[name=city]').val('');
+                        }
+                    },
+                    error: function (response) {
+                        $('input[name=state]').val('');
+                        $('input[name=city]').val('');
+                    }
+
+                });
+            }
+        });
+
         $('#checkoutForm')
             .on('init.field.fv', function (e, data) {
                 var field = data.field,        // Get the field name
@@ -70,44 +144,43 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                                 message: 'The name is required'
                             },
                             stringLength: {
-                                min : 6,
                                 max: 30,
                                 message: 'The name must be more than 6 and less than 30 characters long. '
                             },
-                            regexp: {
-                                regexp: /^[a-zA-Z' \.]+$/,
-                                message: 'The name can only consist of alphabets'
-                            }
+                            // regexp: {
+                            //     regexp: /^[a-zA-Z' \.]+$/,
+                            //     message: 'The name can only consist of alphabetical'
+                            // }
                         }
                     },
                     // Email field
                     email: {
-                        validMessage: 'The email address looks great',
+                        validMessage: 'We will email you a confirmation',
                         validators: {
                             notEmpty: {
                                 message: 'The email address is required'
                             },
                             stringLength: {
                                 min: 1,
-                                max: 30,
+                                max: 100,
                                 message: 'The email address must be more than 6 and less than 30 characters long. '
                             },
                             regexp: {
-                                regexp: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                                message: 'Please enter a valid email address'
+                                regexp: '^[^@\\s]+@([^@\\s]+\\.)+[^@\\s]+$',
+                                message: 'The value is not a valid email address'
                             }
                         }
                     },
                     // phone number field
                     phonenumber: {
-                        validMessage: 'The phone number looks great',
+                        validMessage: 'We will only contact you about your order',
                         validators: {
                             notEmpty: {
                                 message: 'Please supply a phone number so we can call if there are any problems using this address.'
                             },
                             stringLength: {
                                 min: 10,
-                                message: 'Not a valid 10-digit US phone number (must not include spaces or special characters)'
+                                message: 'Not a valid 10-digit US phone number.'
                             }
                         }
                     },
@@ -121,12 +194,12 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                             },
                             notEmpty: {
                                 message: 'The zip code is required'
-                            }
+                            },
                         }
                     },
                     // The City  field
                     city: {
-                        validMessage: 'The city looks great',
+                        validMessage: 'That was easy!',
                         validators: {
                             stringLength: {
                                 max: 50,
@@ -139,7 +212,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                     },
                     // address field
                     address: {
-                        validMessage: 'The address looks great',
+                        validMessage: 'We ship anywhere in the USA',
                         validators: {
                             stringLength: {
                                 min: 1,
@@ -162,15 +235,18 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                     },
                     // Card Number
                     creditcard: {
-                        validMessage: 'The credit card number great',
+                        validMessage: 'Your credit card looks great!',
                         validators: {
+                            creditCard: {
+                                message: 'The credit card number is not valid'
+                            },
                             notEmpty: {
                                 message: 'Please enter a valid card number'
                             },
-                            stringLength: {
-                                min: 15,
-                                message: 'The credit card can be 15 or 16 digits. '
-                            },
+                            // // stringLength: {
+                            //   min: 15,
+                            //   message: 'The credit card can be 15 or 16 digits. '
+                            // }
                         }
                     },
                     // State
@@ -245,6 +321,10 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                         }
                     }
                 }
+            })
+            .on('err.field.fv', function(e, data) {
+            })
+            .on('success.validator.fv', function(e, data) {
             })
             .on('err.form.fv', function (e, data) {
             })
@@ -355,5 +435,9 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                 // Show the valid message element
                 $field.next('.validMessage[data-field="' + field + '"]').hide();
             });
+
+            $('input[name=creditcard]').mask('0000000000000000', {'translation': {0: {pattern: /[0-9*]/}}});
+            $('input[name=phonenumber]').mask('000-000-0000', {'translation': {0: {pattern: /[0-9*-]/}}});
+            $('input[name=zipcode]').mask('00000', {'translation': {0: {pattern: /[0-9]/}}});
     }, 0);
 }]);
