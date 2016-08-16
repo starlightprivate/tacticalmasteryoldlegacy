@@ -18,6 +18,7 @@ angular.module('tactical').controller('BuymodalCtrl', ['$scope','$rootScope', '$
 
             modal.css('display', 'block');
             dialog.css("margin-top", Math.max(0, ($(window).height() - dialog.height()) / 2));
+            // $('#buyForm').formValidation('resetForm', true);
         }
 
         $('#buyModal').on('shown.bs.modal', reposition);
@@ -27,6 +28,11 @@ angular.module('tactical').controller('BuymodalCtrl', ['$scope','$rootScope', '$
             $('.modal:visible').each(reposition);
         });
 
+        $('#buyModal').on('hidden.bs.modal', function (e) {
+            console.log("Modal hidden");
+            $(this).find('form').trigger('reset');
+            $('#buyForm').formValidation('resetForm', true);
+        });
 
         var isFormDirty = false;
 
@@ -76,10 +82,11 @@ angular.module('tactical').controller('BuymodalCtrl', ['$scope','$rootScope', '$
 
         $('#buyForm').formValidation({
             framework: 'bootstrap4',
+            excluded: ':disabled',
             icon: {
-            valid: 'fa fa-check',
-            invalid: 'fa fa-remove',
-            validating: 'fa fa-refresh'
+                valid: 'fa fa-check',
+                invalid: 'fa fa-remove',
+                validating: 'fa fa-refresh'
             },
             fields: {
                 fullname: {
