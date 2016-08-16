@@ -13,6 +13,16 @@ angular.module('tactical').config(function($stateProvider, $urlRouterProvider, $
             controller: 'CheckoutCtrl',
             controllerAs: 'co',
             params: { 'modalData': undefined }
+        }).state('batteryoffer', {
+            url: '/us_batteryoffer',
+            templateUrl: 'pages/batteryoffer/batteryoffer.html',
+            controller: 'BatteryOfferCtrl',
+            controllerAs: 'boffer'
+        }).state('headlampoffer', {
+            url: '/us_headlampoffer',
+            templateUrl: 'pages/headlampoffer/headlampoffer.html',
+            controller: 'HeadLampOfferCtrl',
+            controllerAs: 'hloffer'
         });
 
     /* Add New States Above */

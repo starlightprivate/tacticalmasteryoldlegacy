@@ -18,7 +18,7 @@ angular.module('tactical').controller('BuymodalCtrl', ['$scope','$rootScope', '$
 
             modal.css('display', 'block');
             dialog.css("margin-top", Math.max(0, ($(window).height() - dialog.height()) / 2));
-            // $('#buyForm').formValidation('resetForm', true);
+          // $('#buyForm').formValidation('resetForm', true);
         }
 
         $('#buyModal').on('shown.bs.modal', reposition);
