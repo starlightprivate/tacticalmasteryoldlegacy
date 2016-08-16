@@ -417,11 +417,6 @@ label[for="creditcard"], label[for="expiration"] {
     right: 20px;
 }
 
-#zipcode ~ .fv-control-feedback {
-    right: 0;
-    width: 12px;
-}
-
 #zipcode {
     width: 100%;
     height: 2.5rem;
@@ -502,18 +497,19 @@ label[for="creditcard"], label[for="expiration"] {
 
         &.cc-visa {
             background-image: url(../img/cc-visa.svg);
-            background-size: 105%;
+            background-color: #194ba0;
+            background-size: 95%;
         }
 
         &.cc-mc {
-            background-image: url(../img/cc-mastercard.svg);
-            background-size: 80%;
+            background-image: url(../img/cc-mastercard.png);
+            background-size: 90%;
             background-color: #000;
         }
 
         &.cc-american {
             background-image: url(../img/cc-amex.svg);
-            background-size: 145%;
+            background-size: 120%;
         }
         &.cc-discover {
             background-image: url(../img/cc-discover.png);
@@ -541,6 +537,13 @@ label[for="creditcard"], label[for="expiration"] {
         bottom: 33px;
         right: 10px;
     }
+}
+
+.fv-form-bootstrap4 [data-fv-icon-for=cardSecurityCode].fv-control-feedback.fa-remove {
+    margin-top: -6px;
+}
+.fv-form-bootstrap4 [data-fv-icon-for=cardSecurityCode].fv-control-feedback.fa-check {
+    margin-top: -6px;
 }
 
 .lock-icon {
