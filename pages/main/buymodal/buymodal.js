@@ -27,7 +27,6 @@ angular.module('tactical').controller('BuymodalCtrl', ['$scope','$rootScope', '$
             $('.modal:visible').each(reposition);
         });
 
-
         var isFormDirty = false;
 
         // Define new validator
