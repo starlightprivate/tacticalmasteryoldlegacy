@@ -12,7 +12,6 @@ angular.module('tactical').controller('BuymodalCtrl', ['$scope','$rootScope', '$
     $timeout(function () {
         
         function reposition() {
-            $("#fullname").focus();
             var modal = $(this),
                 dialog = modal.find('.modal-dialog');
 
@@ -21,7 +20,12 @@ angular.module('tactical').controller('BuymodalCtrl', ['$scope','$rootScope', '$
           // $('#buyForm').formValidation('resetForm', true);
         }
 
-        $('#buyModal').on('shown.bs.modal', reposition);
+        function modalOpen() {
+            $("#fullname").focus();
+            reposition();
+        }
+
+        $('#buyModal').on('shown.bs.modal', modalOpen);
 
         // Reposition when the window is resized
         $(window).on('resize', function() {

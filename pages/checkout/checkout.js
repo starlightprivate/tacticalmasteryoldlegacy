@@ -54,14 +54,14 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
             return true;
         });
 
-        // $('input[type=tel]').on('keydown', function (e) {
-        //     e = (e) ? e : window.event;
-        //     var charCode = (e.which) ? e.which : e.keyCode;
-        //     if (charCode === 189)  {
-        //         return false;
-        //     }
-        //     return true;
-        // });
+        $('input[type=tel]').on('keydown', function (e) {
+            e = (e) ? e : window.event;
+            var charCode = (e.which) ? e.which : e.keyCode;
+            if (charCode === 189)  {
+                return false;
+            }
+            return true;
+        });
 
 
         // Credit Card Behavior >>>
