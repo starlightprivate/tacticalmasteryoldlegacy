@@ -65,7 +65,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
             }
         })
             .on("cardChange", function(e, card) {
-            if (card.supported == true) {
+            if (card.supported) {
                 $('.payment-icon .cc-icon.cc-'+ card.type).parents('a').siblings().find('.cc-icon').removeClass('active').addClass('inactive');
                 $('.payment-icon .cc-icon.cc-'+ card.type)
                     .removeClass('inactive')
@@ -86,7 +86,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                     type: 'GET',
                     dataType: 'json',
                     success: function(response) {
-                        if (response.success == true) {
+                        if (response.success) {
                             if (response.data) {
                                 $('select[name=state]').val(response.data.state);
                                 $('input[name=city]').val(response.data.primary_city);
@@ -242,7 +242,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                                     // Get the number provided by user
                                     var value = $field.val();
                                     // Check if it's one of test card numbers
-                                    if (value == '0000000000000000') {
+                                    if (value === '0000000000000000') {
                                         // then turn it to be a valid one defined by VALID_CARD_NUMBER
                                         return '4441444444444441';
                                     } else {
@@ -372,7 +372,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                 $scope.checkoutData.cardNumber = $('#creditcard').val();
                 $scope.checkoutData.cardMonth = $('#month option:selected').text();
                 $scope.checkoutData.cardYear = $('#year option:selected').text();
-                $scope.checkoutData.cardSecurityCode = 100; // $('#cardSecurityCode').val();
+                $scope.checkoutData.cardSecurityCode = $('#cardSecurityCode').val();
                 $scope.checkoutData.product1_id = $('input[name=productRadio]:checked', '#checkoutForm').val();// $("input:radio[name ='product']:checked").val();
                 $scope.checkoutData.product1_qty = $scope.productQuantiyMapping[$scope.checkoutData.product1_id];
 
