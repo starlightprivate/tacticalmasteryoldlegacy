@@ -61,16 +61,22 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                             if (response.data) {
                                 $('select[name=state]').val(response.data.state);
                                 $('input[name=city]').val(response.data.primary_city);
+                              $('#checkoutForm').formValidation('revalidateField', 'state');
+                              $('#checkoutForm').formValidation('revalidateField', 'city');
                             }
                         }
                         else {
                             $('select[name=state]').val('');
                             $('input[name=city]').val('');
+                            $('#checkoutForm').formValidation('revalidateField', 'state');
+                            $('#checkoutForm').formValidation('revalidateField', 'city');
                         }
                     },
                     error: function (response) {
                         $('select[name=state]').val('');
                         $('input[name=city]').val('');
+                        $('#checkoutForm').formValidation('revalidateField', 'state');
+                        $('#checkoutForm').formValidation('revalidateField', 'city');
                     }
 
                 });
@@ -336,7 +342,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                         $('#checkoutForm .btn-complete').removeClass('pulse');
                     }
                     else {
-                        if ($('#checkoutForm .fv-has-feedback.has-success').length >= 10) {
+                        if ($('#checkoutForm .fv-has-feedback.has-success').length >= 11) {
                             $('#checkoutForm .btn-complete').addClass('pulse');
                         }
                         else {
@@ -357,7 +363,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                         $('#checkoutForm .btn-complete').removeClass('pulse');
                     }
                     else {
-                        if ($('#checkoutForm .fv-has-feedback.has-success').length >= 10) {
+                        if ($('#checkoutForm .fv-has-feedback.has-success').length >= 11) {
                             $('#checkoutForm .btn-complete').addClass('pulse');
                         }
                         else {
