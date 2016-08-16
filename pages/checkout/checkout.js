@@ -1,8 +1,45 @@
-angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$stateParams','$timeout', function ($scope ,$state, $stateParams, $timeout ) {
+angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$stateParams','$http', '$timeout','tacticalService', function ($scope ,$state, $stateParams,$http, $timeout , tacticalService) {
  
     console.log("CheckoutCtrl Running", $stateParams.modalData);
+    
+    $scope.checkoutData = {
+        firstName : "",
+        lastName : "",
+        emailAddress : "",
+        phoneNumber: "",
+        address1: "",
+        address2 : "",
+        city : "",
+        state : "",
+        postalCode : "",
+        cardNumber : "",
+        cardSecurityCode : "",
+        cardMonth : "",
+        cardYear : "",
+        product1_qty : "",
+        product1_id : ""
+    };
+
+    $scope.productQuantiyMapping = {
+        "6": 5,
+        "4": 3,
+        "2": 1,
+        "3": 2,
+        "5": 4,
+        "7": 10,
+        "8": 15,
+        "9": 20
+    };
 
     $timeout(function () {
+
+        function checkout_field_validation(fields){
+            for(var i in fields){
+                $('#checkoutForm').formValidation('revalidateField', fields[i]);
+            }
+        }
+
+        var ZIPRevalidateFields = ['city', 'state'];
 
         $('input[type=number]').on('keydown', function (e) {
             e = (e) ? e : window.event;
@@ -57,21 +94,23 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                     type: 'GET',
                     dataType: 'json',
                     success: function(response) {
-                        console.log(response);
                         if (response.success) {
                             if (response.data) {
-                                $('input[name=state]').val(response.data.state);
+                                $('select[name=state]').val(response.data.state);
                                 $('input[name=city]').val(response.data.primary_city);
+                                checkout_field_validation(ZIPRevalidateFields);
                             }
                         }
                         else {
-                            $('input[name=state]').val('');
+                            $('select[name=state]').val('');
                             $('input[name=city]').val('');
+                            checkout_field_validation(ZIPRevalidateFields);
                         }
                     },
                     error: function (response) {
-                        $('input[name=state]').val('');
+                        $('select[name=state]').val('');
                         $('input[name=city]').val('');
+                        checkout_field_validation(ZIPRevalidateFields);
                     }
 
                 });
@@ -209,7 +248,19 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                         validMessage: 'Your credit card looks great!',
                         validators: {
                             creditCard: {
-                                message: 'The credit card number is not valid'
+                                message: 'The credit card number is not valid',
+                                transformer: function ($field, validatorName, validator) {
+                                    // Get the number provided by user
+                                    var value = $field.val();
+                                    // Check if it's one of test card numbers
+                                    if (value === '0000000000000000') {
+                                        // then turn it to be a valid one defined by VALID_CARD_NUMBER
+                                        return '4441444444444441';
+                                    } else {
+                                        // Otherwise, just return the initial value
+                                        return value;
+                                    }
+                                }
                             },
                             notEmpty: {
                                 message: 'Please enter a valid card number'
@@ -218,6 +269,18 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                             //   min: 15,
                             //   message: 'The credit card can be 15 or 16 digits. '
                             // }
+                        }
+                    },
+                    cardSecurityCode: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter a valid security code'
+                            },
+                            stringLength: {
+                                min: 3,
+                                max: 4,
+                                message: 'Security code Invalid Length'
+                            }
                         }
                     },
                     // State
@@ -300,6 +363,65 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
             .on('err.form.fv', function (e, data) {
             })
             .on('success.form.fv', function (e, data) {
+
+                console.log("success.form.fv");
+                e.preventDefault();
+
+                $scope.checkoutData = {
+                    cardSecurityCode: ""
+                };//checkoutForm
+
+                $scope.checkoutData.firstName = $('#name').val();
+                $scope.checkoutData.lastName = "NA";
+                $scope.checkoutData.emailAddress = $('#email').val();
+                $scope.checkoutData.phoneNumber = $('#phonenumber').val();
+                $scope.checkoutData.postalCode = $('#zipcode').val();
+                $scope.checkoutData.state = $("#state option:selected").text();
+                $scope.checkoutData.city = $('#city').val();
+                $scope.checkoutData.address1 = $('#address').val();
+                $scope.checkoutData.address2 = $('#address2').val();
+                $scope.checkoutData.cardNumber = $('#creditcard').val();
+                $scope.checkoutData.cardMonth = $('#month option:selected').text();
+                $scope.checkoutData.cardYear = $('#year option:selected').text();
+                $scope.checkoutData.cardSecurityCode = $('#cardSecurityCode').val();
+                $scope.checkoutData.product1_id = $('input[name=productRadio]:checked', '#checkoutForm').val();// $("input:radio[name ='product']:checked").val();
+                $scope.checkoutData.product1_qty = $scope.productQuantiyMapping[$scope.checkoutData.product1_id];
+
+                tacticalService.postToNewApiServer('create-order', $scope.checkoutData).then(function (resp) {
+                    console.log("create-order success", resp);
+
+                    $state.go('batteryoffer', { });
+                },
+                    function (err) {
+                        console.log("create-order err" , err);
+                    }
+                );
+                
+
+                // var inputdata = {
+                //     "firstName": "Shahjada",
+                //     "lastName": "NA",
+                //     "emailAddress": "asasas@gmail.com",
+                //     "phoneNumber": "123-123-1234",
+                //     "address1": "Just add 1",
+                //     "address2": "Just add 2",
+                //     "city": "NY",
+                //     "state": "NY",
+                //     "postalCode": "789",
+                //     "cardNumber": "0000000000000000",
+                //     "cardSecurityCode": "100",
+                //     "cardMonth": "5",
+                //     "cardYear": "2017",
+                //     "product1_qty": "3",
+                //     "product1_id": "7"
+                // };
+
+                // tacticalService.postToNewApiServer('create-order', inputdata);
+
+                        
+
+                // $http
+                
             })
             .on('success.field.fv', function (e, data) {
                 var field = data.field,        // Get the field name
@@ -313,7 +435,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                         $('#checkoutForm .btn-complete').removeClass('pulse');
                     }
                     else {
-                        if ($('#checkoutForm .fv-has-feedback.has-success').length >= 10) {
+                        if ($('#checkoutForm .fv-has-feedback.has-success').length >= 11) {
                             $('#checkoutForm .btn-complete').addClass('pulse');
                         }
                         else {
@@ -334,7 +456,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                         $('#checkoutForm .btn-complete').removeClass('pulse');
                     }
                     else {
-                        if ($('#checkoutForm .fv-has-feedback.has-success').length >= 10) {
+                        if ($('#checkoutForm .fv-has-feedback.has-success').length >= 11) {
                             $('#checkoutForm .btn-complete').addClass('pulse');
                         }
                         else {

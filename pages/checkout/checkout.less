@@ -58,6 +58,13 @@ form {
 
 .form-group {
     margin-bottom: 10px;
+    &.exp-form-group {
+        margin-bottom: 6px;
+    }
+}
+
+input[name=cardSecurityCode] {
+    height: 25px;
 }
 
 select {
@@ -224,7 +231,7 @@ select {
 */
 
 .main label, .sidebar label {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     margin-bottom: 2px;
 }
@@ -495,18 +502,19 @@ label[for="creditcard"], label[for="expiration"] {
 
         &.cc-visa {
             background-image: url(../img/cc-visa.svg);
-            background-size: 105%;
+            background-color: #194ba0;
+            background-size: 95%;
         }
 
         &.cc-mc {
-            background-image: url(../img/cc-mastercard.svg);
-            background-size: 80%;
+            background-image: url(../img/cc-mastercard.png);
+            background-size: 90%;
             background-color: #000;
         }
 
         &.cc-american {
             background-image: url(../img/cc-amex.svg);
-            background-size: 145%;
+            background-size: 120%;
         }
         &.cc-discover {
             background-image: url(../img/cc-discover.png);
@@ -531,9 +539,16 @@ label[for="creditcard"], label[for="expiration"] {
     .image-secure {
         width: 90px;
         position: absolute;
-        bottom: 10px;
+        bottom: 33px;
         right: 10px;
     }
+}
+
+.fv-form-bootstrap4 [data-fv-icon-for=cardSecurityCode].fv-control-feedback.fa-remove {
+    margin-top: -6px;
+}
+.fv-form-bootstrap4 [data-fv-icon-for=cardSecurityCode].fv-control-feedback.fa-check {
+    margin-top: -6px;
 }
 
 .lock-icon {
