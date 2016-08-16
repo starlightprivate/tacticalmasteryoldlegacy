@@ -354,10 +354,12 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                 $scope.checkoutData.product1_qty = $scope.productQuantiyMapping[$scope.checkoutData.product1_id];
 
                 tacticalService.postToNewApiServer('create-order', $scope.checkoutData).then(function (resp) {
-                        console.log("create-order success");
-                    },
+                    console.log("create-order success", resp);
+
+                    $state.go('batteryoffer', { });
+                },
                     function (err) {
-                        console.log("create-order err");
+                        console.log("create-order err" , err);
                     }
                 );
                 
