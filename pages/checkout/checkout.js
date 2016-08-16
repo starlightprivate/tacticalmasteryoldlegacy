@@ -313,7 +313,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                                     var year    = parseInt(currentDate.getYear());
                                     var yearVal = parseInt($('#checkoutForm').find('[name=year]').val());
 
-                                    if (yearVal == null || yearVal == undefined) {
+                                    if (yearVal === null || yearVal === undefined) {
                                         return true;
                                     }
                                     else {
