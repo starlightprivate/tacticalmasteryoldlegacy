@@ -10,7 +10,7 @@ angular.module('tactical').controller('BuymodalCtrl', ['$scope','$rootScope', '$
     };
     
     $timeout(function () {
-        
+
         function reposition() {
             $("#fullname").focus();
             var modal = $(this),
