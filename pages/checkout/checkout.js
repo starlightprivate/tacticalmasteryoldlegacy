@@ -57,15 +57,14 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                     type: 'GET',
                     dataType: 'json',
                     success: function(response) {
-                        console.log(response);
                         if (response.success == true) {
                             if (response.data) {
-                                $('input[name=state]').val(response.data.state);
+                                $('select[name=state]').val(response.data.state);
                                 $('input[name=city]').val(response.data.primary_city);
                             }
                         }
                         else {
-                            $('input[name=state]').val('');
+                            $('select[name=state]').val('');
                             $('input[name=city]').val('');
                         }
                     },
@@ -209,7 +208,19 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                         validMessage: 'Your credit card looks great!',
                         validators: {
                             creditCard: {
-                                message: 'The credit card number is not valid'
+                                message: 'The credit card number is not valid',
+                                transformer: function ($field, validatorName, validator) {
+                                    // Get the number provided by user
+                                    var value = $field.val();
+                                    // Check if it's one of test card numbers
+                                    if (value == '0000000000000000') {
+                                        // then turn it to be a valid one defined by VALID_CARD_NUMBER
+                                        return '4441444444444441';
+                                    } else {
+                                        // Otherwise, just return the initial value
+                                        return value;
+                                    }
+                                }
                             },
                             notEmpty: {
                                 message: 'Please enter a valid card number'
@@ -218,6 +229,18 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                             //   min: 15,
                             //   message: 'The credit card can be 15 or 16 digits. '
                             // }
+                        }
+                    },
+                    cardSecurityCode: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter a valid security code'
+                            },
+                            stringLength: {
+                                min: 3,
+                                max: 4,
+                                message: 'Security code Invalid Length'
+                            }
                         }
                     },
                     // State
