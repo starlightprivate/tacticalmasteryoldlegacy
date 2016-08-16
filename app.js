@@ -17,12 +17,18 @@ angular.module('tactical').config(function($stateProvider, $urlRouterProvider, $
             url: '/us_batteryoffer',
             templateUrl: 'pages/batteryoffer/batteryoffer.html',
             controller: 'BatteryOfferCtrl',
-            controllerAs: 'boffer'
+            controllerAs: 'boffer',
+            params : { 'orderData' : undefined}
         }).state('headlampoffer', {
             url: '/us_headlampoffer',
             templateUrl: 'pages/headlampoffer/headlampoffer.html',
             controller: 'HeadLampOfferCtrl',
             controllerAs: 'hloffer'
+        }).state('receipt', {
+            url: '/receipt',
+            templateUrl: 'pages/receipt/receipt.html',
+            controller: 'ReceiptCtrl',
+            controllerAs: 'receipt'
         });
 
     /* Add New States Above */

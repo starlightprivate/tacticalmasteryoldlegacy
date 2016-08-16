@@ -366,10 +366,6 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                 console.log("success.form.fv");
                 e.preventDefault();
 
-                $scope.checkoutData = {
-                    cardSecurityCode: ""
-                };//checkoutForm
-
                 $scope.checkoutData.firstName = $('#name').val();
                 $scope.checkoutData.lastName = "NA";
                 $scope.checkoutData.emailAddress = $('#email').val();
@@ -403,7 +399,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
 
                     localStorage.setItem('orderData', JSON.stringify(orderData));
 
-                    $state.go('batteryoffer', { });
+                    $state.go('batteryoffer', { orderData : orderData });
                 },
                     function (err) {
                         console.log("create-order err" , err);
@@ -428,12 +424,6 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                 //     "product1_qty": "3",
                 //     "product1_id": "7"
                 // };
-
-                // tacticalService.postToNewApiServer('create-order', inputdata);
-
-                        
-
-                // $http
                 
             })
             .on('success.field.fv', function (e, data) {
