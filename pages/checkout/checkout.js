@@ -389,6 +389,20 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                 tacticalService.postToNewApiServer('create-order', $scope.checkoutData).then(function (resp) {
                     console.log("create-order success", resp);
 
+                    var orderData = {
+                        dateCreated: resp.data.dateCreated,
+                        f_address1: resp.data.address1,
+                        f_city: resp.data.city,
+                        f_name: resp.data.firstName,
+                        f_emailAddress: resp.data.emailAddress,
+                        f_phoneNumber: resp.data.phoneNumber,
+                        orderId: resp.data.orderId,
+                        f_postalCode: resp.data.postalCode,
+                        initialProductId: resp.data.items[0].productId
+                    };
+
+                    localStorage.setItem('orderData', JSON.stringify(orderData));
+
                     $state.go('batteryoffer', { });
                 },
                     function (err) {
