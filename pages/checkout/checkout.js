@@ -54,14 +54,14 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
             return true;
         });
 
-        $('input[type=tel]').on('keydown', function (e) {
-            e = (e) ? e : window.event;
-            var charCode = (e.which) ? e.which : e.keyCode;
-            if (charCode === 189)  {
-                return false;
-            }
-            return true;
-        });
+        // $('input[type=tel]').on('keydown', function (e) {
+        //     e = (e) ? e : window.event;
+        //     var charCode = (e.which) ? e.which : e.keyCode;
+        //     if (charCode === 189)  {
+        //         return false;
+        //     }
+        //     return true;
+        // });
 
 
         // Credit Card Behavior >>>
@@ -310,15 +310,22 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                                 message: 'Please set month more or equal current',
                                 callback: function(value, validator, $field) {
                                     var currentDate = new Date();
-                                    var year = parseInt(currentDate.getYear());
+                                    var year    = parseInt(currentDate.getYear());
+                                    var yearVal = parseInt($('#checkoutForm').find('[name=year]').val());
 
-                                    var selectedYear = 100 + parseInt($('#checkoutForm').find('[name=year]').val());
-
-                                    if (selectedYear === year) {
-                                        return (parseInt(value)-1 >= parseInt(currentDate.getMonth()));
+                                    if (yearVal == null || yearVal == undefined) {
+                                        return true;
                                     }
                                     else {
-                                        return true;
+                                        var selectedYear = 100 + parseInt($('#checkoutForm').find('[name=year]').val());
+
+                                        if (selectedYear === year) {
+                                            return (parseInt(value)-1 >= parseInt(currentDate.getMonth()));
+                                        }
+                                        else {
+                                            return true;
+                                        }
+                                        checkout_field_validation(['year']);
                                     }
                                 }
                             }
@@ -336,17 +343,9 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                                     var currentDate = new Date();
                                     var yearCondition = 100+parseInt(value) >= parseInt(currentDate.getYear());
 
-                                    if (100+parseInt(value) > parseInt(currentDate.getYear())) {
-                                        $('#checkoutForm').find('[name=month]').parents('.form-group').removeClass('has-warning').addClass('has-success');
-                                        $('#checkoutForm').find('[name=month]').next('.text-success').show();
-                                        $('#checkoutForm').find('[name=month]').nextAll('.form-control-feedback').hide();
-                                        $('#checkoutForm').find('[name=month]').nextAll('.fa ').removeClass('fa-remove').addClass('fa-check');
-                                    }
-                                    // else if(100+parseInt(value) < parseInt(currentDate.getYear())) {
-                                    //   $('#checkoutForm').find('[name=month]').parents('.form-group').removeClass('has-success').addClass('has-warning');
-                                    //   $('#checkoutForm').find('[name=month]').next('.text-success').hide();
-                                    //   $('#checkoutForm').find('[name=month]').nextAll('.form-control-feedback').hide();
-                                    //   $('#checkoutForm').find('[name=month]').nextAll('.fa ').removeClass('fa-remove').addClass('fa-check');
+                                    checkout_field_validation(['month']);
+
+                                    // if (100+parseInt(value) > parseInt(currentDate.getYear())) {
                                     // }
 
                                     return yearCondition;
