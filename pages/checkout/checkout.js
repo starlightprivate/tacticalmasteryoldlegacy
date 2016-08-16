@@ -4,6 +4,14 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
 
     $timeout(function () {
 
+        function checkout_field_validation(fields){
+            for(var i in fields){
+                $('#checkoutForm').formValidation('revalidateField', fields[i]);
+            }
+        }
+
+        var ZIPRevalidateFields = ['city', 'state'];
+
         $('input[type=number]').on('keydown', function (e) {
             e = (e) ? e : window.event;
             var charCode = (e.which) ? e.which : e.keyCode;
@@ -61,22 +69,19 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                             if (response.data) {
                                 $('select[name=state]').val(response.data.state);
                                 $('input[name=city]').val(response.data.primary_city);
-                              $('#checkoutForm').formValidation('revalidateField', 'state');
-                              $('#checkoutForm').formValidation('revalidateField', 'city');
+                                checkout_field_validation(ZIPRevalidateFields);
                             }
                         }
                         else {
                             $('select[name=state]').val('');
                             $('input[name=city]').val('');
-                            $('#checkoutForm').formValidation('revalidateField', 'state');
-                            $('#checkoutForm').formValidation('revalidateField', 'city');
+                            checkout_field_validation(ZIPRevalidateFields);
                         }
                     },
                     error: function (response) {
                         $('select[name=state]').val('');
                         $('input[name=city]').val('');
-                        $('#checkoutForm').formValidation('revalidateField', 'state');
-                        $('#checkoutForm').formValidation('revalidateField', 'city');
+                        checkout_field_validation(ZIPRevalidateFields);
                     }
 
                 });
