@@ -8,7 +8,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
             e = (e) ? e : window.event;
             var charCode = (e.which) ? e.which : e.keyCode;
             var availableChar = [8, 18, 33, 34, 35, 36, 37, 38, 39, 40, 46];
-            if (availableChar.indexOf(charCode) != -1) {
+            if (availableChar.indexOf(charCode) !== -1) {
                 return true;
             }
             if (charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -20,7 +20,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
         $('input[type=tel]').on('keydown', function (e) {
             e = (e) ? e : window.event;
             var charCode = (e.which) ? e.which : e.keyCode;
-            if (charCode == 189)  {
+            if (charCode === 189)  {
                 return false;
             }
             return true;
@@ -31,7 +31,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
         $("input#creditcard").detectCard({supported:['american-express', 'visa', 'mastercard', 'discover']});
 
         $("input#creditcard").on('keyup', function() {
-            if ($(this).val() == '' || $(this).val() == undefined) {
+            if ($(this).val() === '' || $(this).val() === undefined) {
                 $(this).parents('.form-group').prev('.payment-icon').find('.cc-icon').removeClass('inactive active');
             }
         })
@@ -50,7 +50,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
 
 
         $('input[name=zipcode]').on('keyup', function(){
-            if ($(this).val().length == 5) {
+            if ($(this).val().length === 5) {
                 var path = 'https://newapi.tacticalmastery.com/api/v1.0/state/';
                 $.ajax({
                     url: path + $(this).val() + '/?',
@@ -69,7 +69,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                         }
                     },
                     error: function (response) {
-                        $('input[name=state]').val('');
+                        $('select[name=state]').val('');
                         $('input[name=city]').val('');
                     }
 
@@ -274,7 +274,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
 
                                     var selectedYear = 100 + parseInt($('#checkoutForm').find('[name=year]').val());
 
-                                    if (selectedYear == year) {
+                                    if (selectedYear === year) {
                                         return (parseInt(value)-1 >= parseInt(currentDate.getMonth()));
                                     }
                                     else {
@@ -331,7 +331,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                 // Show the valid message element
                 $field.next('.validMessage[data-field="' + field + '"]').show();
 
-                if(data.fv.getInvalidFields().length == 0) {
+                if(data.fv.getInvalidFields().length === 0) {
                     if ($('#checkoutForm .fv-has-feedback.has-warning').length > 0) {
                         $('#checkoutForm .btn-complete').removeClass('pulse');
                     }
@@ -352,7 +352,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                 var field = data.field,        // Get the field name
                     $field = data.element;      // Get the field element
 
-                if(data.fv.getInvalidFields().length == 0) {
+                if(data.fv.getInvalidFields().length === 0) {
                     if ($('#checkoutForm .fv-has-feedback.has-warning').length > 0) {
                         $('#checkoutForm .btn-complete').removeClass('pulse');
                     }

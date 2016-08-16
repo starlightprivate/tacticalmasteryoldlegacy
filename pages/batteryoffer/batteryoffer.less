@@ -1,0 +1,313 @@
+@import "../../styles/variables";
+
+html, body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background-color: #F1F4F8;
+  color: #2f2f2f;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: @main-font-size;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+}
+ul, li {
+  list-style-type: none;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+
+  > img {
+    display: block;
+    margin: 10px auto;
+    width: 18%;
+
+    @media only screen and (max-width: 960px){
+        width: 25%;
+    }
+    @media only screen and (max-width: 767px){
+        width: 40%;
+    }
+    @media only screen and (max-width: 637px){
+        width: 60%;
+    }
+
+    @media only screen and (max-width: 480px){
+        width: 80%;
+    }
+  }
+}
+
+.container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.page-container {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border: 1px solid rgba(0,0,0,0.7);
+}
+
+.midWideContainer {
+  max-width: 960px;
+}
+
+.containerInner {
+  padding-left: 40px;
+  padding-right: 40px;
+
+  @media (max-width: 769px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.col-inner {
+  padding: 0 10px;
+}
+
+.top-menu {
+  overflow: hidden;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  @media (max-width:991px ) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .nav-pills {
+    &>li{
+      float: left;
+      margin-top: 0;
+      &>a {
+        border-radius: 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .nav {
+    display: block;
+    padding: 0;
+    border-color: rgba(47, 47, 47, 0.168627);
+    outline: none;
+    margin-bottom: 0;
+    background-color: rgb(242, 248, 236);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+
+    li {
+      text-align: center;
+
+      @media (max-width: 767px) {
+        float: none;
+      }
+
+      a {
+        display: block;
+        color: rgb(206, 218, 192);
+        font-size: 18px;
+        line-height: 42px;
+        font-family: Oswald, sans-serif;
+
+        &.active {
+          background-color: rgb(189, 218, 162);
+          color: rgb(88, 118, 60);
+        }
+
+        &:hover,
+        &:active {
+          text-decoration: none;
+          background-color: rgb(189, 218, 162);
+          color: rgb(88, 118, 60);
+        }
+      }
+    }
+  }
+}
+
+.page-title {
+  text-align: center;
+  margin-top: 30px;
+  font-family: Oswald, sans-serif;
+}
+
+.go_green {
+  color: #4ac716;
+}
+
+.main-box {
+  float: none !important;
+  margin: 0 auto;
+
+  @media (max-width: 640px) {
+    &.col-xs-8 {
+      width: 100%;
+    }
+  }
+}
+
+.battery-box {
+  background: #fff;
+  border: 3px solid #000;
+  font-size: 28px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-top: 10px;
+
+  img {
+    margin: 0 auto;
+  }
+}
+
+.buttons-box {
+  .btn {
+    border: 1px solid rgba(0,0,0,0.1);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 13px 35px;
+    padding-bottom: 14px;
+
+    margin-right: auto;
+    margin-left: auto;
+    color: #FFF;
+    font-weight: bold;
+    display: block;
+    -ms-transform: all .2s ease-in-out;
+    -webkit-transform: all .2s ease-in-out;
+    transform: all .2s ease-in-out;
+    text-align: center;
+    text-decoration: none;
+    white-space: normal;
+
+
+    &:visited, &:active, &:hover {
+      text-decoration: none !important;
+    }
+
+    &.btn-1 {
+      background-color: rgb(58, 174, 0);
+
+      &:hover{
+        background-color: #1e5801;
+        box-shadow: 0 0 10px 1px #000;
+        text-shadow: 0 0 3px #000;
+      }
+      &:active {
+        background-color: #103100;
+        box-shadow: 0 0 10px 1px #2ca81b;
+      }
+    }
+
+    &.btn-2 {
+      margin-top: 35px;
+      background: rgba(0,94,0,1);
+      //background: linear-gradient(0deg, rgba(0,94,0,1) 0%, rgba(0,128,0,1) 100%);
+      //background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0,128,0,1)), color-stop(100%, rgba(0,94,0,1)));
+      //background: -webkit-linear-gradient(90deg, rgba(0,94,0,1) 0%, rgba(0,128,0,1) 100%);
+      //background: -o-linear-gradient(90deg, rgba(0,94,0,1) 0%, rgba(0,128,0,1) 100%);
+      //background: -ms-linear-gradient(90deg, rgba(0,94,0,1) 0%, rgba(0,128,0,1) 100%);
+
+      &:hover{
+        background-color: #1e5801;
+        box-shadow: 0 0 10px 1px #000;
+        text-shadow: 0 0 3px #000;
+      }
+      &:active {
+        background-color: #103100;
+        box-shadow: 0 0 10px 1px #2ca81b;
+      }
+    }
+
+    &.btn-3 {
+      display: block;
+      margin-top: 100px;
+      border: none;
+      font-weight: normal;
+      color: rgb(0, 0, 238);
+      font-size: 15px;
+      font-family: "Open Sans", sans-serif;
+    }
+
+  }
+}
+
+.norton-long-bar {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  margin: 12px auto -1px;
+}
+
+.av-vs-cc {
+  clear: both;
+  max-width: 100%;
+  margin: 15px auto 5px;
+  text-align: center;
+  img {
+    height: 40px;
+    width: auto;
+
+    &.gold-star {
+      height: 68px;
+    }
+  }
+}
+
+.secure {
+  display: block;
+  position: relative;
+  font-size: 12px;
+  text-align: center;
+  margin:0;
+
+  &:before {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 6px 0 0;
+    background: url(../../images/lock-gold.png) no-repeat;
+    width: 20px;
+    height: 20px;
+    content: "";
+  }
+}
