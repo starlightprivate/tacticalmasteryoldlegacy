@@ -271,18 +271,18 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                             // }
                         }
                     },
-                    cardSecurityCode: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please enter a valid security code'
-                            },
-                            stringLength: {
-                                min: 3,
-                                max: 4,
-                                message: 'Security code Invalid Length'
-                            }
-                        }
-                    },
+                    // cardSecurityCode: {
+                    //     validators: {
+                    //         notEmpty: {
+                    //             message: 'Please enter a valid security code'
+                    //         },
+                    //         stringLength: {
+                    //             min: 3,
+                    //             max: 4,
+                    //             message: 'Security code Invalid Length'
+                    //         }
+                    //     }
+                    // },
                     // State
                     state: {
                         validMessage: null,
@@ -438,7 +438,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                         $('#checkoutForm .btn-complete').removeClass('pulse');
                     }
                     else {
-                        if ($('#checkoutForm .fv-has-feedback.has-success').length >= 11) {
+                        if ($('#checkoutForm .fv-has-feedback.has-success').length >= 10) {
                             $('#checkoutForm .btn-complete').addClass('pulse');
                         }
                         else {
@@ -459,7 +459,7 @@ angular.module('tactical').controller('CheckoutCtrl', ['$scope','$state','$state
                         $('#checkoutForm .btn-complete').removeClass('pulse');
                     }
                     else {
-                        if ($('#checkoutForm .fv-has-feedback.has-success').length >= 11) {
+                        if ($('#checkoutForm .fv-has-feedback.has-success').length >= 10) {
                             $('#checkoutForm .btn-complete').addClass('pulse');
                         }
                         else {
