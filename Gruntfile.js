@@ -59,7 +59,8 @@ module.exports = function (grunt) {
     jshint: {
       main: {
         options: {
-            jshintrc: '.jshintrc'
+            jshintrc: '.jshintrc',
+            ignores: ['pages/**/*.js']
         },
         src: createFolderGlobs(['*.js', '!*web.js',  '!*formValidation.js'])
       }
