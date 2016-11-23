@@ -1,0 +1,24 @@
+version: v1.5.0
+ignore: {}
+patch:
+  'npm:negotiator:20160616':
+    - karma > connect > compression > accepts > negotiator:
+        patched: '2016-09-28T01:27:46.647Z'
+    - karma > connect > serve-index > accepts > negotiator:
+        patched: '2016-09-28T01:27:46.647Z'
+    - grunt-contrib-connect > connect > negotiator:
+        patched: '2016-09-28T01:27:46.647Z'
+  'npm:qs:20140806-1':
+    - grunt-contrib-watch > tiny-lr-fork > qs:
+        patched: '2016-09-28T01:27:46.647Z'
+  'npm:request:20160119':
+    - karma-phantomjs-launcher > phantomjs > request:
+        patched: '2016-09-28T01:27:46.647Z'
+  'npm:tough-cookie:20160722':
+    - karma-phantomjs-launcher > phantomjs > request > tough-cookie:
+        patched: '2016-09-28T01:27:46.647Z'
+  'npm:ws:20160104':
+    - grunt-browser-output > ws:
+        patched: '2016-09-28T01:27:46.647Z'
+    - karma > socket.io > socket.io-client > ws:
+        patched: '2016-09-28T01:27:46.647Z'
